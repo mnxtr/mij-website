@@ -1,0 +1,151 @@
+🚀 AUTOMATED DEPLOYMENT READY - FINAL STEP REQUIRED
+
+Your GitHub token doesn't have 'workflow' scope, so we need to add the workflow files manually.
+
+═══════════════════════════════════════════════════════════════════
+
+📋 METHOD 1: Direct Web Interface (FASTEST - 2 MINUTES)
+
+STEP 1: Create deploy.yml
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Click this link: https://github.com/mnxtr/mij-website/new/main?filename=.github/workflows/deploy.yml
+
+2. Paste this entire content:
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+        env:
+          VITE_BASE_PATH: '/${{ github.event.repository.name }}/'
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./build
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+3. Click "Commit new file"
+
+STEP 2: Enable GitHub Pages
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Go to: https://github.com/mnxtr/mij-website/settings/pages
+
+2. Under "Build and deployment":
+   - Source: Select "GitHub Actions"
+
+3. Done! Your site will deploy automatically!
+
+STEP 3: Watch Deployment
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Go to: https://github.com/mnxtr/mij-website/actions
+
+2. You'll see "Deploy to GitHub Pages" running (yellow circle)
+
+3. Wait 2-3 minutes for green checkmark ✓
+
+STEP 4: Visit Your Live Site! 🎉
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+https://mnxtr.github.io/mij-website/
+
+═══════════════════════════════════════════════════════════════════
+
+📋 METHOD 2: Copy Files Manually
+
+If the direct link doesn't work:
+
+1. Go to: https://github.com/mnxtr/mij-website
+2. Click "Add file" → "Create new file"
+3. Type: .github/workflows/deploy.yml
+4. Paste the content from above
+5. Click "Commit new file"
+
+═══════════════════════════════════════════════════════════════════
+
+📁 Workflow File Location (Local)
+
+The workflow file is already on your computer at:
+/home/mansib/Downloads/MIJ Website Redesign Prompt (1)/.github/workflows/deploy.yml
+
+You can copy the content from there if needed.
+
+═══════════════════════════════════════════════════════════════════
+
+🎯 What Happens After Adding the File?
+
+1. ✅ GitHub Actions workflow triggers automatically
+2. ✅ Builds your React application
+3. ✅ Deploys to GitHub Pages
+4. ✅ Site goes live at: https://mnxtr.github.io/mij-website/
+
+═══════════════════════════════════════════════════════════════════
+
+❓ Troubleshooting
+
+Problem: "Pages" option not in Settings
+Solution: Make sure repository is Public (required for free GitHub Pages)
+
+Problem: Workflow doesn't run
+Solution: Make sure file is exactly at: .github/workflows/deploy.yml
+
+Problem: Build fails  
+Solution: Check Actions tab for errors (usually resolves itself on retry)
+
+═══════════════════════════════════════════════════════════════════
+
+📞 Need Help?
+
+See full documentation in:
+- DEPLOYMENT.md
+- DEPLOYMENT_STATUS.md  
+- QUICK_START.md
+
+═══════════════════════════════════════════════════════════════════
+
+Repository: https://github.com/mnxtr/mij-website
+Live Site: https://mnxtr.github.io/mij-website/ (after deployment)
+
+Status: ✅ Ready to deploy! Just add the workflow file! 🚀

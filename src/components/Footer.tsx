@@ -145,12 +145,18 @@ export function Footer() {
               © 2024 Axsh Tech. {t.footer.rights}
             </p>
             <div className="flex items-center gap-4">
-              <button className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Privacy Policy
-              </button>
-              <button className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Terms of Service
-              </button>
+              <Link
+                to="/privacy-policy"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                {t.footer.privacyPolicy}
+              </Link>
+              <Link
+                to="/terms-of-service"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                {t.footer.termsOfService}
+              </Link>
             </div>
           </div>
         </div>

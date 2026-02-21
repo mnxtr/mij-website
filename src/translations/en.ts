@@ -846,6 +846,92 @@ export const en = {
       logistics: 'Logistics Support',
     },
     connect: 'Connect',
+    legal: 'Legal',
+    privacyPolicy: 'Privacy Policy',
+    termsOfService: 'Terms of Service',
     rights: 'All rights reserved.',
   },
+
+  // Privacy Policy
+  privacy: {
+    title: 'Privacy Policy',
+    subtitle: 'Your privacy is important to us',
+    lastUpdated: 'Last Updated',
+    updateDate: 'January 1, 2026',
+    introduction: 'At MIJ, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit our website or use our services.',
+    sections: {
+      collection: {
+        title: 'Information We Collect',
+        content: 'We collect information that you provide directly to us, including:\n\n• Personal identification information (name, email address, phone number)\n• Business information (company name, position, industry)\n• Communication preferences and inquiry details\n• Technical data (IP address, browser type, device information)\n• Cookies and similar tracking technologies\n\nWe collect this information when you:\n• Fill out contact forms or inquiry forms\n• Subscribe to our newsletter or updates\n• Interact with our website or services\n• Communicate with us via email or other channels',
+      },
+      usage: {
+        title: 'How We Use Your Information',
+        content: 'We use the collected information for the following purposes:\n\n• To respond to your inquiries and provide requested services\n• To send you relevant business information and updates\n• To improve our website functionality and user experience\n• To analyze usage patterns and optimize our services\n• To comply with legal obligations and protect our rights\n• To prevent fraud and enhance security\n\nWe do not sell or rent your personal information to third parties.',
+      },
+      security: {
+        title: 'Data Security',
+        content: 'We implement appropriate technical and organizational measures to protect your personal information:\n\n• Encryption of data in transit and at rest\n• Regular security assessments and updates\n• Access controls and authentication procedures\n• Secure data storage and backup systems\n• Employee training on data protection\n\nWhile we strive to protect your information, no method of transmission over the internet is 100% secure. We cannot guarantee absolute security.',
+      },
+      rights: {
+        title: 'Your Rights',
+        content: 'You have the following rights regarding your personal data:\n\n• Access: Request access to your personal information\n• Correction: Request correction of inaccurate data\n• Deletion: Request deletion of your data\n• Objection: Object to processing of your data\n• Portability: Request transfer of your data\n• Withdrawal: Withdraw consent at any time\n\nTo exercise these rights, please contact us using the information provided below.',
+      },
+      contact: {
+        title: 'Contact Us',
+        description: 'If you have questions about this Privacy Policy or our data practices, please contact us.',
+        button: 'Contact Us',
+      },
+    },
+  },
+
+  // Terms of Service
+  terms: {
+    title: 'Terms of Service',
+    subtitle: 'Please read these terms carefully',
+    lastUpdated: 'Last Updated',
+    updateDate: 'January 1, 2026',
+    introduction: 'Welcome to MIJ. By accessing or using our website and services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.',
+    sections: {
+      acceptance: {
+        title: 'Acceptance of Terms',
+        content: 'By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. These Terms of Service govern your use of our website, products, and services.\n\nWe reserve the right to update or modify these terms at any time without prior notice. Your continued use of the website following any changes constitutes acceptance of those changes.',
+      },
+      eligibility: {
+        title: 'User Eligibility',
+        content: 'You must be at least 18 years old and have the legal capacity to enter into binding agreements to use our services.\n\nBy using our services, you represent and warrant that:\n• You have the legal capacity to enter into these Terms\n• You will comply with all applicable laws and regulations\n• All information you provide is accurate and current\n• You will not use our services for any illegal or unauthorized purpose',
+      },
+      services: {
+        title: 'Use of Services',
+        content: 'Our services are provided for business purposes. You agree to:\n\n• Use our services only for lawful purposes\n• Not interfere with or disrupt the website or servers\n• Not attempt to gain unauthorized access to our systems\n• Not copy, reproduce, or distribute our content without permission\n• Not use automated systems to access our website without consent\n• Respect intellectual property rights\n\nWe reserve the right to refuse service, terminate accounts, or cancel orders at our sole discretion.',
+      },
+      intellectual: {
+        title: 'Intellectual Property',
+        content: 'All content on this website, including but not limited to text, graphics, logos, images, and software, is the property of MIJ or its content suppliers and is protected by international copyright laws.\n\nYou may not:\n• Reproduce, duplicate, or copy content without written permission\n• Use our trademarks or branding without authorization\n• Create derivative works based on our content\n• Remove or alter copyright notices\n\nLimited use for personal, non-commercial purposes is permitted with proper attribution.',
+      },
+      liability: {
+        title: 'Limitation of Liability',
+        content: 'To the fullest extent permitted by law, MIJ shall not be liable for:\n\n• Indirect, incidental, special, or consequential damages\n• Loss of profits, revenue, or business opportunities\n• Data loss or corruption\n• Service interruptions or delays\n• Third-party actions or content\n\nOur total liability shall not exceed the amount paid by you for our services in the past 12 months.\n\nWe provide our services "as is" without warranties of any kind, either express or implied.',
+      },
+      governing: {
+        title: 'Governing Law',
+        content: 'These Terms shall be governed by and construed in accordance with the laws of Japan, without regard to its conflict of law provisions.\n\nAny disputes arising from these Terms or your use of our services shall be subject to the exclusive jurisdiction of the courts of Tokyo, Japan.\n\nIf any provision of these Terms is found to be unenforceable, the remaining provisions will continue in full force and effect.',
+      },
+    },
+    contact: {
+      title: 'Questions About These Terms?',
+      description: 'If you have any questions about these Terms of Service, please contact us.',
+      button: 'Contact Us',
+    },
+  },
+
+  // Cookie Consent
+  cookie: {
+    title: 'We Use Cookies',
+    description: 'We use cookies and similar technologies to improve your browsing experience, analyze site traffic, and personalize content. By clicking "Accept", you consent to our use of cookies.',
+    learnMore: 'Learn more',
+    accept: 'Accept All Cookies',
+    decline: 'Decline',
+  },
 };
+// Note: Landing page translations have been moved inline in LandingPage.tsx for simplicity
+// The landing page uses hardcoded English content that can be replaced with t() calls if needed
