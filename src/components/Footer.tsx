@@ -31,13 +31,13 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative bg-background pt-32 pb-16 overflow-hidden border-t border-border/50 font-header transition-colors duration-500">
+    <footer className="relative bg-background pt-16 sm:pt-20 md:pt-28 lg:pt-32 pb-8 sm:pb-12 md:pb-16 overflow-hidden border-t border-border/50 font-header transition-colors duration-500">
       {/* Decorative background */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -mr-64 -mt-64 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[100px] -ml-32 -mb-32 pointer-events-none" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 md:gap-16 lg:gap-24 mb-12 sm:mb-16 md:mb-24">
           {/* Company Info */}
           <div className="lg:col-span-4 space-y-10">
             <Link to="/" className="inline-block group">
@@ -45,7 +45,7 @@ export function Footer() {
             </Link>
 
             <div className="space-y-6">
-              <p className="text-2xl font-black text-foreground tracking-tight leading-tight">
+              <p className="text-xl sm:text-2xl font-black text-foreground tracking-tight leading-tight">
                 {t.home.tagline}
               </p>
               <p className="text-lg text-muted-foreground font-light font-body leading-relaxed">
@@ -75,7 +75,7 @@ export function Footer() {
           <div className="lg:col-span-4 grid grid-cols-2 gap-12">
             {footerLinks.map((section, idx) => (
               <div key={idx} className="space-y-8">
-                <h4 className="text-sm font-black uppercase tracking-[0.3em] text-primary flex items-center gap-3">
+                <h4 className="text-xs sm:text-sm font-black uppercase tracking-[0.3em] text-primary flex items-center gap-3">
                   <Sparkles className="w-4 h-4" />
                   {section.title}
                 </h4>
@@ -98,7 +98,7 @@ export function Footer() {
 
           {/* Contact Info */}
           <div className="lg:col-span-4 space-y-10">
-            <h4 className="text-sm font-black uppercase tracking-[0.3em] text-primary flex items-center gap-3">
+            <h4 className="text-xs sm:text-sm font-black uppercase tracking-[0.3em] text-primary flex items-center gap-3">
               <Mail className="w-4 h-4" />
               {t.nav.contact}
             </h4>
@@ -109,7 +109,7 @@ export function Footer() {
                   <MapPin className="w-6 h-6 text-foreground group-hover:text-white transition-colors" />
                 </div>
                 <div className="space-y-2">
-                  <p className="text-lg font-black text-foreground font-header uppercase tracking-tighter">Tokyo Headquarters</p>
+                  <p className="text-base sm:text-lg font-black text-foreground font-header uppercase tracking-tighter">Tokyo Headquarters</p>
                   <p className="text-muted-foreground font-light font-body leading-snug">Tokyo, Minato City, Japan</p>
                 </div>
               </div>
@@ -119,7 +119,7 @@ export function Footer() {
                   <MapPin className="w-6 h-6 text-foreground group-hover:text-white transition-colors" />
                 </div>
                 <div className="space-y-2">
-                  <p className="text-lg font-black text-foreground font-header uppercase tracking-tighter">Dhaka Regional Office</p>
+                  <p className="text-base sm:text-lg font-black text-foreground font-header uppercase tracking-tighter">Dhaka Regional Office</p>
                   <p className="text-muted-foreground font-light font-body leading-snug">Banani, Dhaka, Bangladesh</p>
                 </div>
               </div>

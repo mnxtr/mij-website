@@ -240,7 +240,7 @@ export default function HomePage() {
                     </Badge>
                   </motion.div>
 
-                  <div className="text-7xl md:text-8xl lg:text-9xl font-black leading-[0.9] tracking-tighter">
+                  <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black leading-[0.9] tracking-tighter">
                     <TextReveal text={t.home.hero.tagline1} className="text-foreground" />
                     <TextReveal text={t.home.hero.tagline2} className="text-primary" delay={0.4} />
                     <br />
@@ -303,7 +303,7 @@ export default function HomePage() {
               </motion.div>
 
               {/* Right Side - Dynamic Image Composition */}
-              <div className="relative h-[800px] lg:flex items-center justify-center hidden">
+              <div className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] xl:h-[800px] flex items-center justify-center">
                 {/* Decorative Circles */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] border border-primary/10 rounded-full animate-[spin_30s_linear_infinite]" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] border border-border/50 rounded-full animate-[spin_20s_linear_infinite_reverse]" />
@@ -314,7 +314,7 @@ export default function HomePage() {
                   animate={{ opacity: 1, scale: 1, rotate: 2 }}
                   transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
                   whileHover={{ rotate: 0, scale: 1.02 }}
-                  className="relative z-20 w-[450px] h-[650px]"
+                  className="relative z-20 w-[280px] h-[400px] sm:w-[320px] sm:h-[450px] md:w-[380px] md:h-[550px] lg:w-[420px] lg:h-[600px] xl:w-[450px] xl:h-[650px]"
                 >
                   <div className="w-full h-full bg-card p-4 rounded-[64px] shadow-2xl overflow-hidden relative group border-4 border-card/50 backdrop-blur-3xl">
                     <ImageWithFallback
@@ -344,7 +344,7 @@ export default function HomePage() {
                   initial={{ opacity: 0, x: 150 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute -top-10 -right-10 w-56 h-56 z-30"
+                  className="absolute -top-5 -right-5 sm:-top-8 sm:-right-8 lg:-top-10 lg:-right-10 w-28 h-28 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 z-30"
                 >
                   <div className="w-full h-full bg-card p-3 rounded-[40px] shadow-2xl overflow-hidden hover:scale-110 transition-transform duration-700 -rotate-12 hover:rotate-0 border-2 border-card/50">
                     <ImageWithFallback
@@ -359,7 +359,7 @@ export default function HomePage() {
                   initial={{ opacity: 0, x: -150 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute -bottom-20 -left-10 w-64 h-64 z-30"
+                  className="absolute -bottom-10 -left-5 sm:-bottom-16 sm:-left-8 lg:-bottom-20 lg:-left-10 w-32 h-32 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-64 lg:h-64 z-30"
                 >
                   <div className="w-full h-full bg-card p-3 rounded-[48px] shadow-2xl overflow-hidden hover:scale-110 transition-transform duration-700 rotate-12 hover:rotate-0 border-2 border-card/50">
                     <ImageWithFallback
@@ -423,7 +423,7 @@ export default function HomePage() {
       </section>
 
       {/* Business Areas - Premium Grid Layout */}
-      <section className="py-40 bg-muted/20 relative overflow-hidden transition-colors duration-500">
+      <section className="py-16 sm:py-20 md:py-28 lg:py-40 bg-muted/20 relative overflow-hidden transition-colors duration-500">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/[0.02] -skew-x-12 translate-x-1/4 pointer-events-none" />
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -441,7 +441,7 @@ export default function HomePage() {
               </Badge>
               <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-6xl md:text-8xl font-black text-foreground mb-10 tracking-tighter leading-[0.9] font-header">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-foreground mb-10 tracking-tighter leading-[0.9] font-header">
               {t.home.business.title}
             </h2>
             <p className="text-2xl md:text-3xl text-muted-foreground max-w-4xl mx-auto font-light leading-relaxed font-body">
@@ -518,7 +518,7 @@ export default function HomePage() {
       </section>
 
       {/* Building Bridges Banner Section - Immersive Design */}
-      <section className="relative h-[800px] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:h-[800px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1760842840049-ac860fd95766?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0b2t5byUyMGNpdHlzY2FwZSUyMHBhbm9yYW1hJTIwYXJjaGl0ZWN0dXJlfGVufDF8fHx8MTc2MzQ2NTMxNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
@@ -539,7 +539,7 @@ export default function HomePage() {
           >
             <div className="w-32 h-2 bg-primary mx-auto rounded-full shadow-2xl shadow-primary/50 animate-pulse" />
 
-            <h2 className="text-7xl md:text-9xl font-black text-white leading-[0.9] tracking-tighter font-header">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl font-black text-white leading-[0.9] tracking-tighter font-header">
               {t.home.banner.title}
             </h2>
 
@@ -574,7 +574,7 @@ export default function HomePage() {
       </section>
 
       {/* Values Section - Modern Icon Grid */}
-      <section className="py-40 bg-background relative transition-colors duration-500">
+      <section className="py-16 sm:py-20 md:py-28 lg:py-40 bg-background relative transition-colors duration-500">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -585,7 +585,7 @@ export default function HomePage() {
             <Badge variant="outline" className="px-6 py-2 border-primary/20 text-primary bg-primary/5 rounded-full mb-10 uppercase tracking-[0.3em] font-black text-xs font-header">
               {t.home.values.badge}
             </Badge>
-            <h2 className="text-6xl md:text-8xl font-black text-foreground mb-10 tracking-tighter leading-[0.9] font-header">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-foreground mb-10 tracking-tighter leading-[0.9] font-header">
               {t.home.values.title}
             </h2>
             <p className="text-2xl md:text-3xl text-muted-foreground max-w-4xl mx-auto font-light leading-relaxed font-body">
@@ -625,7 +625,7 @@ export default function HomePage() {
       </section>
 
       {/* Latest News Section - Premium Content Cards */}
-      <section className="py-40 bg-muted/20 border-y border-border/50">
+      <section className="py-16 sm:py-20 md:py-28 lg:py-40 bg-muted/20 border-y border-border/50">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -637,7 +637,7 @@ export default function HomePage() {
               <Badge variant="outline" className="px-6 py-2 border-primary/20 text-primary bg-primary/5 rounded-full mb-10 font-black tracking-[0.3em] uppercase text-xs font-header">
                 {t.home.news.badge}
               </Badge>
-              <h2 className="text-6xl md:text-8xl font-black text-foreground tracking-tighter leading-[0.9] font-header">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-foreground tracking-tighter leading-[0.9] font-header">
                 {t.home.news.title}
               </h2>
             </div>
@@ -746,7 +746,7 @@ export default function HomePage() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-5xl mx-auto"
           >
-            <h2 className="text-5xl md:text-8xl font-black mb-20 tracking-tighter leading-[0.9] font-header">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-black mb-20 tracking-tighter leading-[0.9] font-header">
               Join our <span className="text-primary">Global</span> Community
             </h2>
             <div className="flex flex-wrap justify-center gap-12">
@@ -772,7 +772,7 @@ export default function HomePage() {
       </section>
 
       {/* Ready to Connect CTA Section - High Impact */}
-      <section className="relative py-48 overflow-hidden bg-background">
+      <section className="relative py-20 sm:py-28 md:py-36 lg:py-48 overflow-hidden bg-background">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.05)_0%,transparent_70%)] pointer-events-none" />
 
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
@@ -786,7 +786,7 @@ export default function HomePage() {
             <Badge variant="outline" className="px-8 py-3 border-primary text-primary bg-primary/5 rounded-full mb-12 font-black uppercase tracking-[0.3em] text-sm font-header">
               The Future Awaits
             </Badge>
-            <h2 className="text-7xl md:text-9xl font-black text-foreground mb-12 tracking-tighter leading-[0.85] font-header">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl font-black text-foreground mb-12 tracking-tighter leading-[0.85] font-header">
               {t.home.cta.title}
             </h2>
             <p className="text-3xl md:text-4xl text-muted-foreground max-w-4xl mx-auto mb-20 font-light leading-relaxed font-body">

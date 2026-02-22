@@ -128,7 +128,7 @@ export default function BusinessPage() {
   return (
     <div className="w-full bg-background transition-colors duration-500 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative py-32 md:py-48 bg-background overflow-hidden font-header">
+      <section className="relative py-16 sm:py-20 md:py-32 lg:py-48 bg-background overflow-hidden font-header">
         {/* Floating background elements for premium feel */}
         <FloatingShape className="w-96 h-96 bg-primary/10 -top-10 -left-10" />
         <FloatingShape className="w-80 h-80 bg-primary/5 -bottom-20 right-20" delay={2} />
@@ -149,7 +149,7 @@ export default function BusinessPage() {
               <div className="w-16 h-px bg-primary/20" />
             </motion.div>
 
-            <h1 className="text-7xl md:text-9xl font-black mb-10 leading-[0.9] tracking-tighter text-foreground">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl font-black mb-10 leading-[0.9] tracking-tighter text-foreground">
               <TextReveal text={t.business.hero.title} />
               <div className="flex flex-wrap justify-center gap-x-6">
                 <TextReveal text={t.business.hero.highlight} className="text-primary" delay={0.4} />
@@ -170,9 +170,9 @@ export default function BusinessPage() {
       </section>
 
       {/* Business Divisions */}
-      <section className="py-32 bg-background relative z-10">
+      <section className="py-16 sm:py-20 md:py-28 lg:py-32 bg-background relative z-10">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="space-y-48 max-w-7xl mx-auto">
+          <div className="space-y-20 sm:space-y-28 md:space-y-36 lg:space-y-48 max-w-7xl mx-auto">
             {divisions.map((division, index) => {
               const Icon = division.icon;
               const isEven = index % 2 === 0;
@@ -197,7 +197,7 @@ export default function BusinessPage() {
                       </Magnetic>
 
                       <div className="space-y-8">
-                        <h2 className="text-5xl md:text-7xl font-black text-foreground leading-[0.95] tracking-tighter font-header">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-foreground leading-[0.95] tracking-tighter font-header">
                           {division.title}
                         </h2>
                         <p className="text-2xl text-muted-foreground leading-relaxed font-light font-body">
@@ -236,13 +236,13 @@ export default function BusinessPage() {
                       <motion.div
                         whileHover={{ scale: 1.02, rotate: isEven ? 1 : -1 }}
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative rounded-[64px] overflow-hidden shadow-2xl p-6 bg-card border border-border"
+                        className="relative rounded-[32px] sm:rounded-[40px] md:rounded-[48px] lg:rounded-[64px] overflow-hidden shadow-2xl p-6 bg-card border border-border"
                       >
                         <div className="relative overflow-hidden rounded-[48px]">
                           <ImageWithFallback
                             src={division.image}
                             alt={division.title}
-                            className={`w-full h-[600px] object-cover transition-all duration-[2s] ease-[0.16, 1, 0.3, 1] ${animatedImages[`division-${index}`] ? 'grayscale-0' : 'grayscale contrast-125'} group-hover:grayscale-0 group-hover:scale-110`}
+                            className={`w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover transition-all duration-[2s] ease-[0.16, 1, 0.3, 1] ${animatedImages[`division-${index}`] ? 'grayscale-0' : 'grayscale contrast-125'} group-hover:grayscale-0 group-hover:scale-110`}
                           />
                         </div>
                         {/* Premium accent */}
@@ -260,7 +260,7 @@ export default function BusinessPage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-32 bg-muted/20 relative overflow-hidden">
+      <section className="py-16 sm:py-20 md:py-28 lg:py-32 bg-muted/20 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.02)_0%,transparent_70%)] pointer-events-none" />
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -277,7 +277,7 @@ export default function BusinessPage() {
               </Badge>
               <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 text-foreground tracking-tighter font-header">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-8 text-foreground tracking-tighter font-header">
               {t.business.whyChoose.title} <span className="text-primary">{t.business.whyChoose.highlight}</span>
             </h2>
             <p className="text-2xl text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed font-body">
@@ -330,14 +330,14 @@ export default function BusinessPage() {
                   style={{ WebkitTapHighlightColor: 'transparent' }}
                   className="h-full"
                 >
-                  <Card className={`text-center group cursor-pointer border-2 p-12 rounded-[48px] transition-all duration-700 h-full ${isTouched ? 'border-primary shadow-2xl bg-primary/5 shadow-primary/10' : 'border-border bg-background hover:border-primary hover:shadow-2xl hover:shadow-primary/5'}`}>
+                  <Card className={`text-center group cursor-pointer border-2 p-6 sm:p-8 md:p-10 lg:p-12 rounded-[32px] sm:rounded-[40px] lg:rounded-[48px] transition-all duration-700 h-full ${isTouched ? 'border-primary shadow-2xl bg-primary/5 shadow-primary/10' : 'border-border bg-background hover:border-primary hover:shadow-2xl hover:shadow-primary/5'}`}>
                     <CardContent className="p-0 space-y-8">
                       <Magnetic>
                         <div className={`w-24 h-24 border-2 rounded-[28px] flex items-center justify-center mx-auto transition-all duration-700 ${isTouched ? 'bg-primary border-primary scale-110 rotate-12 shadow-xl shadow-primary/30' : 'border-border bg-background group-hover:bg-primary group-hover:border-primary group-hover:scale-110 group-hover:rotate-12 group-hover:shadow-xl group-hover:shadow-primary/30'}`}>
                           <Icon className={`w-12 h-12 transition-colors duration-500 ${isTouched ? 'text-white' : 'text-foreground group-hover:text-white'}`} />
                         </div>
                       </Magnetic>
-                      <h3 className={`text-3xl font-black transition-colors duration-500 ${isTouched ? 'text-primary' : 'text-foreground group-hover:text-primary'} tracking-tight font-header`}>
+                      <h3 className={`text-xl sm:text-2xl lg:text-3xl font-black transition-colors duration-500 ${isTouched ? 'text-primary' : 'text-foreground group-hover:text-primary'} tracking-tight font-header`}>
                         {item.title}
                       </h3>
                       <p className="text-lg text-muted-foreground leading-relaxed font-light font-body">
@@ -353,7 +353,7 @@ export default function BusinessPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-background relative overflow-hidden">
+      <section className="py-16 sm:py-20 md:py-28 lg:py-32 bg-background relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -363,9 +363,9 @@ export default function BusinessPage() {
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Card className="border-2 border-primary/30 bg-card/50 backdrop-blur-2xl max-w-6xl mx-auto rounded-[64px] overflow-hidden shadow-2xl relative">
-              <CardContent className="p-20 text-center relative z-10">
-                <h2 className="text-6xl md:text-8xl font-black mb-10 text-foreground tracking-tighter leading-[0.9] font-header">
+            <Card className="border-2 border-primary/30 bg-card/50 backdrop-blur-2xl max-w-6xl mx-auto rounded-[32px] sm:rounded-[40px] md:rounded-[48px] lg:rounded-[64px] overflow-hidden shadow-2xl relative">
+              <CardContent className="p-8 sm:p-12 md:p-16 lg:p-20 text-center relative z-10">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-black mb-10 text-foreground tracking-tighter leading-[0.9] font-header">
                   {t.business.cta.title} <span className="text-primary">{t.business.cta.highlight}</span>
                 </h2>
                 <p className="text-2xl md:text-3xl text-muted-foreground mb-16 max-w-3xl mx-auto font-light leading-relaxed font-body">

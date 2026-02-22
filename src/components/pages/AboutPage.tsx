@@ -115,7 +115,7 @@ export default function AboutPage() {
   return (
     <div className="w-full bg-background transition-colors duration-500 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative py-32 md:py-48 bg-background overflow-hidden">
+      <section className="relative py-16 sm:py-20 md:py-32 lg:py-48 bg-background overflow-hidden">
         {/* Floating background elements for premium feel */}
         <FloatingShape className="w-96 h-96 bg-primary/15 -top-10 -left-10" />
         <FloatingShape className="w-[500px] h-[500px] bg-primary/10 -bottom-20 -right-20" delay={2} />
@@ -136,7 +136,7 @@ export default function AboutPage() {
               <div className="w-16 h-px bg-primary/20" />
             </motion.div>
 
-            <h1 className="text-7xl md:text-9xl font-black mb-12 leading-[0.9] tracking-tighter text-foreground">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl font-black mb-12 leading-[0.9] tracking-tighter text-foreground">
               <TextReveal text={t.about.hero.title} />
               <div className="flex flex-wrap justify-center gap-x-6">
                 <TextReveal text={t.about.hero.highlight} className="text-primary" delay={0.5} />
@@ -157,7 +157,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-32 bg-background relative overflow-hidden">
+      <section className="py-16 sm:py-20 md:py-28 lg:py-32 bg-background relative overflow-hidden">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
             initial="hidden"
@@ -186,12 +186,12 @@ export default function AboutPage() {
                   onTouchStart={() => setTouchedCard(item.id)}
                   onTouchEnd={() => setTimeout(() => setTouchedCard(null), 300)}
                 >
-                  <CardContent className="p-16 space-y-10">
+                  <CardContent className="p-8 sm:p-10 md:p-12 lg:p-16 space-y-8 sm:space-y-10">
                     <div className={`w-24 h-24 border-2 border-border rounded-[32px] flex items-center justify-center transition-all duration-700 ${touchedCard === item.id ? 'bg-primary border-primary scale-110 shadow-xl shadow-primary/30' : 'group-hover:bg-primary group-hover:border-primary group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-primary/30'}`}
                       style={{ transform: touchedCard === item.id ? `rotate(${item.rotate}deg)` : undefined }}>
                       <item.icon className={`w-12 h-12 transition-colors duration-500 ${touchedCard === item.id ? 'text-white' : 'text-foreground group-hover:text-white'}`} />
                     </div>
-                    <h2 className={`text-5xl font-black transition-colors duration-500 ${touchedCard === item.id ? 'text-primary' : 'text-foreground group-hover:text-primary'} tracking-tight`}>{item.title}</h2>
+                    <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-black transition-colors duration-500 ${touchedCard === item.id ? 'text-primary' : 'text-foreground group-hover:text-primary'} tracking-tight`}>{item.title}</h2>
                     <div className="space-y-6">
                       <p className="text-muted-foreground text-xl leading-relaxed font-light font-body">
                         {item.desc}
@@ -209,7 +209,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why Japan × Bangladesh */}
-      <section className="py-32 bg-muted/20">
+      <section className="py-16 sm:py-20 md:py-28 lg:py-32 bg-muted/20">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -225,7 +225,7 @@ export default function AboutPage() {
               </Badge>
               <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 text-foreground tracking-tighter">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-8 text-foreground tracking-tighter">
               {t.about.synergy.title} <span className="text-primary">{t.about.synergy.highlight}</span>
             </h2>
             <p className="text-2xl text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed">
@@ -244,12 +244,12 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-background dark:bg-card rounded-[48px] p-16 shadow-sm border border-border hover:border-primary hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 group"
+                className="bg-background dark:bg-card rounded-[48px] p-8 sm:p-10 md:p-12 lg:p-16 shadow-sm border border-border hover:border-primary hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 group"
               >
                 <div className="w-20 h-20 bg-primary/5 rounded-[24px] flex items-center justify-center mb-10 group-hover:bg-primary/10 group-hover:rotate-12 group-hover:scale-110 transition-all duration-700">
                   <span className="text-5xl">{country.flag}</span>
                 </div>
-                <h3 className="text-3xl font-black mb-8 text-foreground tracking-tight">{country.title}</h3>
+                <h3 className="text-2xl sm:text-3xl font-black mb-8 text-foreground tracking-tight">{country.title}</h3>
                 <ul className="space-y-5">
                   {country.items.map((item: string, i: number) => (
                     <li key={i} className="flex items-start gap-4 group/item">
@@ -267,7 +267,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Values */}
-      <section className="py-32 bg-background relative transition-colors duration-500">
+      <section className="py-16 sm:py-20 md:py-28 lg:py-32 bg-background relative transition-colors duration-500">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -282,7 +282,7 @@ export default function AboutPage() {
               </Badge>
               <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 text-foreground tracking-tighter">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-8 text-foreground tracking-tighter">
               {t.about.coreValues.title} <span className="text-primary">{t.about.coreValues.highlight}</span>
             </h2>
             <p className="text-2xl text-muted-foreground font-light leading-relaxed">
@@ -318,13 +318,13 @@ export default function AboutPage() {
                   <Card
                     className={`border-2 text-center h-full transition-all duration-700 group cursor-pointer rounded-[40px] overflow-hidden ${isTouched ? 'border-primary shadow-2xl shadow-primary/10 bg-primary/5' : 'border-border bg-background hover:border-primary hover:shadow-2xl hover:shadow-primary/5'}`}
                   >
-                    <CardContent className="p-12 space-y-8">
+                    <CardContent className="p-6 sm:p-8 md:p-10 lg:p-12 space-y-6 sm:space-y-8">
                       <Magnetic>
                         <div className={`w-24 h-24 border-2 rounded-[28px] flex items-center justify-center mx-auto transition-all duration-700 ${isTouched ? 'bg-primary border-primary scale-110 rotate-6 shadow-xl shadow-primary/30' : 'border-border bg-background shadow-sm group-hover:bg-primary group-hover:border-primary group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-xl group-hover:shadow-primary/30'}`}>
                           <Icon className={`w-12 h-12 transition-colors duration-500 ${isTouched ? 'text-white' : 'text-foreground group-hover:text-white'}`} />
                         </div>
                       </Magnetic>
-                      <h3 className={`text-3xl font-black transition-colors duration-500 ${isTouched ? 'text-primary' : 'text-foreground group-hover:text-primary'} tracking-tight`}>{value.title}</h3>
+                      <h3 className={`text-xl sm:text-2xl lg:text-3xl font-black transition-colors duration-500 ${isTouched ? 'text-primary' : 'text-foreground group-hover:text-primary'} tracking-tight`}>{value.title}</h3>
                       <p className="text-lg text-muted-foreground leading-relaxed font-light font-body">
                         {value.description}
                       </p>
@@ -338,7 +338,7 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership */}
-      <section className="py-32 bg-background transition-colors duration-500">
+      <section className="py-16 sm:py-20 md:py-28 lg:py-32 bg-background transition-colors duration-500">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -353,7 +353,7 @@ export default function AboutPage() {
               </Badge>
               <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 text-foreground tracking-tighter">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-8 text-foreground tracking-tighter">
               {t.about.leadership.title} <span className="text-primary">{t.about.leadership.highlight}</span> {t.about.leadership.subtitle}
             </h2>
             <p className="text-2xl text-muted-foreground font-light leading-relaxed">
@@ -386,7 +386,7 @@ export default function AboutPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   </div>
                   <CardContent className="p-10">
-                    <h3 className="text-3xl font-black text-foreground mb-1 tracking-tight">{leader.name}</h3>
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-foreground mb-1 tracking-tight">{leader.name}</h3>
                     <p className="text-sm text-primary font-bold mb-5 uppercase tracking-widest">{leader.position}</p>
                     <p className="text-lg text-muted-foreground leading-relaxed font-light font-body">{leader.bio}</p>
                   </CardContent>

@@ -90,7 +90,7 @@ export default function ContactPage() {
   return (
     <div className="w-full bg-background transition-colors duration-500 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative py-32 md:py-48 bg-background overflow-hidden font-header">
+      <section className="relative py-16 sm:py-20 md:py-32 lg:py-48 bg-background overflow-hidden font-header">
         <FloatingShape className="w-96 h-96 bg-primary/10 -top-10 -left-10" />
         <FloatingShape className="w-80 h-80 bg-primary/5 -bottom-20 right-20" delay={2} />
 
@@ -109,7 +109,7 @@ export default function ContactPage() {
               <div className="w-16 h-px bg-primary/20" />
             </motion.div>
 
-            <h1 className="text-7xl md:text-9xl font-black mb-10 leading-[0.9] tracking-tighter text-foreground">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl font-black mb-10 leading-[0.9] tracking-tighter text-foreground">
               <TextReveal text={t.contact.hero.title} />
               <TextReveal text={t.contact.hero.highlight} className="text-primary" delay={0.5} />
             </h1>
@@ -138,11 +138,11 @@ export default function ContactPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Card className="border-2 border-border bg-card/30 backdrop-blur-2xl p-10 md:p-16 rounded-[64px] shadow-2xl relative overflow-hidden">
+                <Card className="border-2 border-border bg-card/30 backdrop-blur-2xl p-6 sm:p-8 md:p-12 lg:p-16 rounded-[64px] shadow-2xl relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16" />
 
                   <div className="mb-12">
-                    <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4 tracking-tighter font-header">{t.contact.form.title}</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-foreground mb-4 tracking-tighter font-header">{t.contact.form.title}</h2>
                     <p className="text-xl text-muted-foreground font-light font-body">Fill out the form below and we'll get back to you within 24 hours</p>
                   </div>
 
@@ -279,7 +279,7 @@ export default function ContactPage() {
       </section>
 
       {/* Office Locations */}
-      <section className="py-32 bg-muted/20 relative overflow-hidden">
+      <section className="py-16 sm:py-20 md:py-28 lg:py-32 bg-muted/20 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.02)_0%,transparent_70%)] pointer-events-none" />
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -296,7 +296,7 @@ export default function ContactPage() {
               </Badge>
               <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 text-foreground tracking-tighter font-header">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-8 text-foreground tracking-tighter font-header">
               {t.contact.offices.title} <span className="text-primary">{t.contact.offices.highlight}</span>
             </h2>
             <p className="text-2xl text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed font-body">
@@ -314,13 +314,13 @@ export default function ContactPage() {
                 transition={{ duration: 0.8, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
                 className="h-full"
               >
-                <Card className={`border-2 border-border bg-card group cursor-pointer p-12 rounded-[64px] transition-all duration-700 h-full flex flex-col hover:border-primary/50 hover:shadow-2xl`}>
+                <Card className={`border-2 border-border bg-card group cursor-pointer p-6 sm:p-8 md:p-10 lg:p-12 rounded-[32px] sm:rounded-[48px] lg:rounded-[64px] transition-all duration-700 h-full flex flex-col hover:border-primary/50 hover:shadow-2xl`}>
                   <div className="flex items-center gap-6 mb-12">
                     <div className="w-20 h-20 bg-primary/5 border border-primary/20 rounded-3xl flex items-center justify-center text-5xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-xl shadow-primary/5">
                       {office.flag}
                     </div>
                     <div>
-                      <h3 className="text-4xl font-black text-foreground tracking-tight font-header">{office.city()}</h3>
+                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-foreground tracking-tight font-header">{office.city()}</h3>
                       <p className="text-xl text-primary font-bold tracking-widest font-header uppercase">{office.country()}</p>
                     </div>
                   </div>
@@ -366,7 +366,7 @@ export default function ContactPage() {
       </section>
 
       {/* Social Media Links */}
-      <section className="py-32 bg-background relative overflow-hidden transition-colors duration-500">
+      <section className="py-16 sm:py-20 md:py-28 lg:py-32 bg-background relative overflow-hidden transition-colors duration-500">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -381,7 +381,7 @@ export default function ContactPage() {
               </Badge>
               <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 text-foreground tracking-tighter font-header">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-8 text-foreground tracking-tighter font-header">
               {t.contact.social.title} <span className="text-primary">{t.contact.social.highlight}</span>
             </h2>
             <p className="text-2xl text-muted-foreground font-light max-w-3xl mx-auto font-body leading-relaxed">
@@ -399,13 +399,13 @@ export default function ContactPage() {
                 transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="h-full"
               >
-                <Card className={`group cursor-pointer border-2 border-border bg-card/30 p-12 rounded-[56px] transition-all duration-700 h-full flex flex-col items-center hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5`}>
+                <Card className={`group cursor-pointer border-2 border-border bg-card/30 p-6 sm:p-8 md:p-10 lg:p-12 rounded-[32px] sm:rounded-[40px] lg:rounded-[56px] transition-all duration-700 h-full flex flex-col items-center hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5`}>
                   <Magnetic>
                     <div className="w-28 h-28 border-2 border-border bg-background rounded-[32px] flex items-center justify-center mb-10 transition-all duration-700 group-hover:bg-primary group-hover:border-primary group-hover:rotate-12 group-hover:shadow-2xl group-hover:shadow-primary/40">
                       <social.icon className="w-12 h-12 text-foreground group-hover:text-white transition-colors duration-500" />
                     </div>
                   </Magnetic>
-                  <h3 className="text-3xl font-black mb-4 text-foreground group-hover:text-primary transition-colors font-header tracking-tight">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-black mb-4 text-foreground group-hover:text-primary transition-colors font-header tracking-tight">
                     {social.name}
                   </h3>
                   <a href={social.url} target="_blank" rel="noopener noreferrer" className="text-lg text-muted-foreground hover:text-primary transition-colors font-body font-light group-hover:underline mt-2">

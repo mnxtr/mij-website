@@ -58,7 +58,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden xl:flex items-center gap-2 bg-muted/30 p-1.5 rounded-2xl border border-border/50 backdrop-blur-md">
+          <nav className="hidden lg:flex items-center gap-2 bg-muted/30 p-1.5 rounded-2xl border border-border/50 backdrop-blur-md">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -86,7 +86,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="xl:hidden w-12 h-12 rounded-2xl bg-muted/50 hover:bg-primary hover:text-white transition-all duration-500"
+                className="lg:hidden w-12 h-12 rounded-2xl bg-muted/50 hover:bg-primary hover:text-white transition-all duration-500"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
@@ -103,7 +103,7 @@ export function Header() {
               animate={{ opacity: 1, height: 'auto', scale: 1 }}
               exit={{ opacity: 0, height: 0, scale: 0.95 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="xl:hidden mt-4 overflow-hidden"
+              className="lg:hidden mt-4 overflow-hidden"
             >
               <nav className="p-6 bg-card border border-border rounded-[32px] shadow-2xl space-y-3">
                 {navItems.map((item) => (
