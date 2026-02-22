@@ -2,14 +2,14 @@ export const en = {
   // Navigation
   nav: {
     home: 'Home',
-    about: 'Corporate Profile',
-    business: 'Strategic Divisions',
-    news: 'Insights & Updates',
-    services: 'Professional Services',
-    clients: 'Client Portfolio',
-    partners: 'Strategic Alliances',
-    recruit: 'Career Opportunities',
-    contact: 'Inquiry & Support',
+    about: 'About',
+    business: 'Business',
+    news: 'News',
+    services: 'Services',
+    clients: 'Clients',
+    partners: 'Partners',
+    recruit: 'Recruit',
+    contact: 'Contact',
   },
 
   // Language Switcher
@@ -21,11 +21,11 @@ export const en = {
 
   // Common
   common: {
-    learnMore: 'Discover More',
-    readMore: 'Continue Reading',
-    contactUs: 'General Inquiries',
-    getStarted: 'Initiate Consultation',
-    viewAll: 'View Collective',
+    learnMore: 'Learn More',
+    readMore: 'Read More',
+    contactUs: 'Contact Us',
+    getStarted: 'Get Started',
+    viewAll: 'View All',
     submit: 'Submit',
     sending: 'Sending...',
   },
@@ -33,13 +33,13 @@ export const en = {
   // Home Page
   home: {
     hero: {
-      tagline1: 'Strategic',
-      tagline2: 'Bilateral',
-      tagline3: 'Economic',
-      tagline4: 'Synergy',
-      description: 'Facilitating high-impact enterprise integration and sustainable cross-border development between the distinguished markets of Japan and Bangladesh.',
-      exploreServices: 'Strategic Solutions',
-      getInTouch: 'Initiate Inquiries',
+      tagline1: 'Cross',
+      tagline2: 'Border,',
+      tagline3: 'Connect',
+      tagline4: 'Dreams',
+      description: 'Bridging Japan and Bangladesh through innovative business solutions, connecting markets and creating opportunities across borders.',
+      exploreServices: 'Explore Services',
+      getInTouch: 'Get in Touch',
     },
     stats: {
       experience: 'Years of Experience',
@@ -48,10 +48,10 @@ export const en = {
       countries: 'Countries Connected',
     },
     business: {
-      badge: 'Core Competencies',
-      title: 'Our Strategic Domains',
-      description: 'Four fundamental pillars of excellence dedicated to enhancing bilateral trade and industrial growth between Japan and Bangladesh.',
-      viewAllServices: 'View Comprehensive Portfolio',
+      badge: 'Our Services',
+      title: 'What We Do',
+      description: 'Four pillars of excellence connecting Japan and Bangladesh through innovative solutions',
+      viewAllServices: 'View All Services',
       mijProducts: {
         title: 'MIJ Products',
         description: 'Premium Japanese products distribution connecting authentic brands with global markets.',

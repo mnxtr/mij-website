@@ -50,27 +50,30 @@
 }
 
 .dark {
-  --background: oklch(0.1 0.02 340);
-  --foreground: oklch(0.98 0.01 340);
-  --card: oklch(0.12 0.02 340);
-  --card-foreground: oklch(0.98 0.01 340);
-  --popover: oklch(0.12 0.02 340);
-  --popover-foreground: oklch(0.98 0.01 340);
-  --primary: oklch(0.7 0.25 340);
-  --primary-foreground: oklch(0.2 0.02 340);
-  --secondary: oklch(0.2 0.02 340);
-  --secondary-foreground: oklch(0.98 0.01 340);
-  --muted: oklch(0.15 0.02 340);
-  --muted-foreground: oklch(0.7 0.02 340);
-  --accent: oklch(0.2 0.05 340);
-  --accent-foreground: oklch(0.98 0.01 340);
-  --destructive: oklch(0.5 0.2 25);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.2 0.02 340 / 0.2);
-  --input: oklch(0.2 0.02 340);
-  --ring: oklch(0.7 0.25 340 / 0.5);
-  --sidebar: oklch(0.11 0.02 340);
-  --sidebar-foreground: oklch(0.98 0.01 340);
+  --background: #050505;
+  --foreground: #f8f8f8;
+  --card: #0a0a0a;
+  --card-foreground: #f8f8f8;
+  --popover: #0a0a0a;
+  --popover-foreground: #f8f8f8;
+  --primary: #FF3366;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #f8f8f8;
+  --muted: #111111;
+  --muted-foreground: #a1a1a1;
+  --accent: #1e1e1e;
+  --accent-foreground: #FF3366;
+  --destructive: #ff0033;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.05);
+  --ring: rgba(255, 51, 102, 0.4);
+  --sidebar: #050505;
+  --sidebar-foreground: #f8f8f8;
+
+  /* Dark Mode Premium Gradients */
+  --gradient-surface: linear-gradient(180deg, rgba(10, 10, 10, 1) 0%, rgba(5, 5, 5, 1) 100%);
 }
 
 @theme inline {
@@ -99,6 +102,9 @@
   --radius-md: calc(var(--radius) - 4px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 8px);
+
+  --font-header: "Outfit", sans-serif;
+  --font-body: "Sora", sans-serif;
 }
 
 @layer base {
@@ -107,15 +113,28 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
-    background-image: radial-gradient(at 0% 0%, rgba(255, 51, 102, 0.03) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(255, 51, 102, 0.03) 0px, transparent 50%);
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary transition-colors duration-500 font-body;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(255, 51, 102, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(255, 51, 102, 0.08) 0px, transparent 50%),
+      linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-header tracking-tight;
   }
 }
 
 @layer utilities {
   .glass-card {
-    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+    @apply bg-white/70 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-xl;
   }
 
   .premium-shadow {

@@ -2,22 +2,22 @@ import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
-import { Building2, Handshake, Globe2, ArrowRight, Calendar } from 'lucide-react';
+import { Building2, Handshake, Globe2, ArrowRight, Calendar, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../translations';
+import TextReveal from '../animations/TextReveal';
+import Magnetic from '../animations/Magnetic';
 
 export default function PartnersPage() {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const t = getTranslation(language);
-  
-  const [touchedButton, setTouchedButton] = useState<string | null>(null);
-  
+
   const partnerCategories = [
     {
+      id: 'japanese',
       title: () => t.partners.japanese.title,
       badge: () => t.partners.japanese.badge,
       description: () => t.partners.japanese.description,
@@ -62,6 +62,7 @@ export default function PartnersPage() {
       ],
     },
     {
+      id: 'bangladeshi',
       title: () => t.partners.bangladeshi.title,
       badge: () => t.partners.bangladeshi.badge,
       description: () => t.partners.bangladeshi.description,
@@ -149,71 +150,94 @@ export default function PartnersPage() {
   ];
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-background transition-colors duration-500 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="py-24 md:py-32 bg-gray-50">
-        <div className="container mx-auto px-6 md:px-12">
+      <section className="relative py-32 md:py-48 bg-background overflow-hidden font-header">
+        <div className="absolute top-0 right-0 w-full h-full pointer-events-none">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
+            animate={{ scale: [1, 1.1, 1], opacity: [0.05, 0.1, 0.05] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] -mr-64 -mt-64"
+          />
+        </div>
+
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="max-w-5xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center justify-center gap-6 mb-12"
+            >
+              <div className="w-16 h-px bg-primary/20" />
+              <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5 px-6 py-2 text-sm tracking-[0.3em] uppercase rounded-full font-bold">
                 {t.partners.badge}
               </Badge>
-              <div className="w-12 h-0.5 bg-gray-900" />
-            </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-              {t.partners.hero.title} <span className="text-[#D4387F]">{t.partners.hero.highlight}</span>
+              <div className="w-16 h-px bg-primary/20" />
+            </motion.div>
+
+            <h1 className="text-7xl md:text-9xl font-black mb-10 leading-[0.9] tracking-tighter text-foreground">
+              <TextReveal text={t.partners.hero.title} />
+              <TextReveal text={t.partners.hero.highlight} className="text-primary" delay={0.5} />
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-2xl md:text-3xl text-muted-foreground leading-relaxed max-w-4xl mx-auto font-light font-body"
+            >
               {t.partners.hero.description}
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
         </div>
       </section>
 
-      {/* Benefits */}
-      <section className="py-16 md:py-24 bg-white">
+      {/* Benefits - Modern Icon Cards */}
+      <section className="py-24 bg-background relative z-10 font-header">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-4xl mx-auto mb-24"
           >
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
+            <div className="flex items-center justify-center gap-6 mb-8">
+              <div className="w-16 h-px bg-border" />
+              <Badge variant="outline" className="border-border text-muted-foreground text-xs tracking-[0.2em] uppercase px-4 py-1">
                 {t.partners.benefits.badge}
               </Badge>
-              <div className="w-12 h-0.5 bg-gray-900" />
+              <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+            <h2 className="text-5xl md:text-7xl font-black mb-8 text-foreground tracking-tighter">
               {t.partners.benefits.title}
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-center"
+                  transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="w-16 h-16 border-2 border-gray-900 rounded-xl flex items-center justify-center mx-auto mb-6">
-                    <Icon className="w-8 h-8 text-gray-900" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{benefit.title()}</h3>
-                  <p className="text-gray-600">{benefit.description()}</p>
+                  <Card className="h-full border-2 border-border bg-card/30 backdrop-blur-xl p-12 rounded-[56px] text-center flex flex-col items-center group hover:border-primary/50 hover:shadow-2xl transition-all duration-700">
+                    <Magnetic>
+                      <div className="w-24 h-24 border-2 border-border bg-background rounded-[32px] flex items-center justify-center mb-10 transition-all duration-700 group-hover:bg-primary group-hover:border-primary group-hover:rotate-12 group-hover:shadow-xl group-hover:shadow-primary/30">
+                        <Icon className="w-10 h-10 text-foreground group-hover:text-white transition-colors duration-500" />
+                      </div>
+                    </Magnetic>
+                    <h3 className="text-2xl font-black mb-6 text-foreground group-hover:text-primary transition-colors tracking-tight">
+                      {benefit.title()}
+                    </h3>
+                    <p className="text-xl text-muted-foreground leading-relaxed font-light font-body">
+                      {benefit.description()}
+                    </p>
+                  </Card>
                 </motion.div>
               );
             })}
@@ -221,64 +245,74 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* Partners Sections */}
+      {/* Partners Categories */}
       {partnerCategories.map((category, categoryIndex) => (
-        <section key={categoryIndex} className={categoryIndex % 2 === 0 ? 'py-24 md:py-32 bg-gray-50' : 'py-24 md:py-32 bg-white'}>
-          <div className="container mx-auto px-6 md:px-12">
+        <section key={category.id} className={`py-32 relative overflow-hidden font-header ${categoryIndex % 2 === 0 ? 'bg-muted/20' : 'bg-background'}`}>
+          <div className="container mx-auto px-6 md:px-12 relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center max-w-3xl mx-auto mb-16"
+              className="text-center max-w-5xl mx-auto mb-24"
             >
-              <div className="flex items-center justify-center gap-4 mb-6">
-                <div className="w-12 h-0.5 bg-gray-900" />
-                <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
+              <div className="flex items-center justify-center gap-6 mb-8">
+                <div className="w-12 h-px bg-border" />
+                <Badge variant="outline" className="border-border text-muted-foreground text-xs tracking-[0.2em] uppercase px-4 py-1">
                   {category.badge()}
                 </Badge>
-                <div className="w-12 h-0.5 bg-gray-900" />
+                <div className="w-12 h-px bg-border" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                {category.title()}
-              </h2>
-              <p className="text-lg text-gray-600">
+              <div className="flex items-center justify-center gap-6 mb-8">
+                <div className="w-20 h-20 bg-background border-2 border-border rounded-3xl flex items-center justify-center text-5xl shadow-xl">
+                  {category.flag}
+                </div>
+                <h2 className="text-5xl md:text-7xl font-black text-foreground tracking-tighter">
+                  {category.title()}
+                </h2>
+              </div>
+              <p className="text-2xl text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed font-body">
                 {category.description()}
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
               {category.partners.map((partner, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.9, y: 40 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <Card className="border-2 border-gray-200 bg-white hover:border-[#D4387F] hover:shadow-lg transition-all h-full group">
-                    <CardContent className="p-8 space-y-4">
-                      <div className="flex items-start justify-between">
-                        <div className="w-12 h-12 border-2 border-gray-900 rounded-lg flex items-center justify-center group-hover:bg-[#D4387F] group-hover:border-[#D4387F] transition-all flex-shrink-0">
-                          <Building2 className="w-6 h-6 text-gray-900 group-hover:text-white transition-colors" />
-                        </div>
-                        <Badge variant="outline" className="border-[#D4387F] text-[#D4387F] text-xs">
-                          {partner.type}
-                        </Badge>
-                      </div>
-                      
-                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-[#D4387F] transition-colors">
-                        {partner.name}
-                      </h3>
-                      
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {partner.description}
-                      </p>
+                  <Card className="h-full border-2 border-border bg-card/50 backdrop-blur-xl p-10 rounded-[48px] overflow-hidden group hover:border-primary/50 hover:shadow-2xl transition-all duration-700 relative">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-1000" />
 
-                      <div className="flex items-center gap-2 text-sm text-gray-500 pt-2 border-t-2 border-gray-200">
-                        <Calendar className="w-4 h-4 text-[#D4387F]" />
-                        <span>Partner since {partner.since}</span>
+                    <div className="flex items-start justify-between mb-8 relative z-10">
+                      <div className="w-14 h-14 bg-muted border border-border rounded-2xl flex items-center justify-center transition-all duration-700 group-hover:bg-primary group-hover:scale-110 group-hover:rotate-12 group-hover:shadow-lg group-hover:shadow-primary/30">
+                        <Building2 className="w-7 h-7 text-foreground group-hover:text-white transition-colors" />
                       </div>
-                    </CardContent>
+                      <Badge variant="outline" className="border-primary/30 text-primary bg-primary/5 px-4 font-bold">
+                        {partner.type}
+                      </Badge>
+                    </div>
+
+                    <h3 className="text-2xl font-black mb-4 text-foreground group-hover:text-primary transition-colors tracking-tight font-header relative z-10">
+                      {partner.name}
+                    </h3>
+
+                    <p className="text-lg text-muted-foreground font-light font-body leading-relaxed mb-8 relative z-10">
+                      {partner.description}
+                    </p>
+
+                    <div className="pt-6 border-t border-border/50 flex items-center justify-between relative z-10">
+                      <div className="flex items-center gap-3">
+                        <Calendar className="w-5 h-5 text-primary" />
+                        <span className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Partner since {partner.since}</span>
+                      </div>
+                      <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                        <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-all group-hover:rotate-[-45deg]" />
+                      </div>
+                    </div>
                   </Card>
                 </motion.div>
               ))}
@@ -287,82 +321,92 @@ export default function PartnersPage() {
         </section>
       ))}
 
-      {/* Partnership Process */}
-      <section className="py-24 md:py-32 bg-gray-50">
-        <div className="container mx-auto px-6 md:px-12">
+      {/* Partnership Process - Minimalist Timeline */}
+      <section className="py-40 bg-background relative overflow-hidden font-header">
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-4xl mx-auto mb-32"
           >
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
+            <div className="flex items-center justify-center gap-6 mb-8">
+              <div className="w-16 h-px bg-border" />
+              <Badge variant="outline" className="border-border text-muted-foreground text-xs tracking-[0.2em] uppercase px-4 py-1">
                 {t.partners.process.badge}
               </Badge>
-              <div className="w-12 h-0.5 bg-gray-900" />
+              <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+            <h2 className="text-5xl md:text-7xl font-black mb-8 text-foreground tracking-tighter">
               {t.partners.process.title}
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto relative">
+            {/* Timeline Line */}
+            <div className="hidden lg:block absolute top-[60px] left-[10%] right-[10%] h-1 bg-border/50 z-0" />
+
             {processSteps.map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
+                transition={{ duration: 0.8, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="relative z-10"
               >
-                <div className="w-20 h-20 border-2 border-[#D4387F] rounded-full flex items-center justify-center mx-auto mb-6 bg-[#D4387F]/5">
-                  <span className="text-3xl font-bold text-[#D4387F]">{step.number}</span>
+                <div className="flex flex-col items-center">
+                  <div className="w-24 h-24 bg-background border-4 border-primary rounded-3xl flex items-center justify-center mb-10 shadow-2xl shadow-primary/10 group hover:rotate-[360deg] transition-all duration-[1s]">
+                    <span className="text-4xl font-black text-primary group-hover:scale-125 transition-transform">{step.number}</span>
+                  </div>
+                  <h3 className="text-2xl font-black mb-6 text-foreground text-center tracking-tight uppercase tracking-widest">
+                    {step.title()}
+                  </h3>
+                  <p className="text-lg text-muted-foreground text-center leading-relaxed font-light font-body">
+                    {step.description()}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900">
-                  {step.title()}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {step.description()}
-                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-6 md:px-12">
+      {/* CTA Section - Sophisticated Glassmorphism */}
+      <section className="relative py-48 bg-background overflow-hidden font-header">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.05)_0%,transparent_70%)] pointer-events-none" />
+
+        <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
+            className="max-w-6xl mx-auto"
           >
-            <Card className="border-2 border-[#D4387F] bg-gradient-to-br from-[#D4387F]/5 to-[#D4387F]/10 max-w-4xl mx-auto">
-              <CardContent className="p-16 text-center">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                  {t.partners.cta.title} <span className="text-[#D4387F]">{t.partners.cta.highlight}</span>
+            <Card className="bg-card/50 backdrop-blur-3xl p-20 md:p-32 rounded-[80px] border-4 border-border shadow-2xl relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -mr-32 -mt-32 group-hover:scale-150 transition-transform duration-[2s]" />
+
+              <div className="relative z-10 space-y-12">
+                <h2 className="text-6xl md:text-9xl font-black text-foreground tracking-tighter leading-[0.85]">
+                  {t.partners.cta.title} <span className="text-primary">{t.partners.cta.highlight}</span>
                 </h2>
-                <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-2xl md:text-4xl text-muted-foreground font-light max-w-4xl mx-auto leading-relaxed font-body">
                   {t.partners.cta.description}
                 </p>
-                <Button 
-                  onClick={() => navigate('/contact')}
-                  onTouchStart={() => setTouchedButton('contact-us')}
-                  onTouchEnd={() => setTimeout(() => setTouchedButton(null), 300)}
-                  className={`text-white gap-3 px-10 py-7 transition-all ${
-                    touchedButton === 'contact-us' ? 'bg-[#FF8FB8]' : 'bg-[#D4387F]'
-                  } hover:bg-[#FF8FB8]`}
-                  size="lg"
-                  style={{ WebkitTapHighlightColor: 'transparent' }}
-                >
-                  {t.common.contactUs}
-                  <ArrowRight className="w-5 h-5" />
-                </Button>
-              </CardContent>
+
+                <div className="pt-10">
+                  <Magnetic>
+                    <Button
+                      size="lg"
+                      onClick={() => navigate('/contact')}
+                      className="bg-primary hover:bg-foreground hover:text-background text-white gap-6 px-20 py-14 text-3xl rounded-[40px] shadow-2xl shadow-primary/50 group/btn font-black transition-all duration-700"
+                    >
+                      {t.common.contactUs}
+                      <ArrowRight className="w-10 h-10 group-hover/btn:translate-x-6 transition-transform duration-700" />
+                    </Button>
+                  </Magnetic>
+                </div>
+              </div>
             </Card>
           </motion.div>
         </div>

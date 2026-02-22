@@ -102,7 +102,7 @@ export default function HomePage() {
       alt: "Tokyo Cityscape"
     },
     {
-      url: "https://images.unsplash.com/photo-1638803512703-9bd638b8194d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaGFrYSUyMGJhbmdsYWRlc2glMjBjaXR5fGVufDF8fHx8MTc2MzQ2MzAyMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      url: "https://images.unsplash.com/photo-1638803512703-9bd638b8194d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaGFrYSUyMGJhbmdsYWRlc2glMjBjaXR5fGVufDF8fHx8MTc2MzQ2MzAyMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       alt: "Dhaka City View"
     }
   ];
@@ -133,24 +133,28 @@ export default function HomePage() {
 
   const businesses = [
     {
+      id: 'products',
       icon: Package,
       title: t.home.business.mijProducts.title,
       description: t.home.business.mijProducts.description,
       features: [t.home.business.mijProducts.feature1, t.home.business.mijProducts.feature2, t.home.business.mijProducts.feature3]
     },
     {
+      id: 'hr',
       icon: Users,
       title: t.home.business.hrRecruitment.title,
       description: t.home.business.hrRecruitment.description,
       features: [t.home.business.hrRecruitment.feature1, t.home.business.hrRecruitment.feature2, t.home.business.hrRecruitment.feature3]
     },
     {
+      id: 'it',
       icon: Code,
       title: t.home.business.itDigital.title,
       description: t.home.business.itDigital.description,
       features: [t.home.business.itDigital.feature1, t.home.business.itDigital.feature2, t.home.business.itDigital.feature3]
     },
     {
+      id: 'consulting',
       icon: TrendingUp,
       title: t.home.business.businessConsulting.title,
       description: t.home.business.businessConsulting.description,
@@ -161,7 +165,7 @@ export default function HomePage() {
   const stats = [
     { number: '23+', label: t.home.stats.clients, icon: Building2 },
     { number: '10+', label: t.home.stats.experience, icon: Award },
-    { number: '23+', label: t.home.stats.clients, icon: Building2 },
+    { number: '98%', label: 'Loyalty', icon: Heart },
     { number: '2', label: t.home.stats.countries, icon: Globe2 },
   ];
 
@@ -189,9 +193,9 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-background transition-colors duration-500 overflow-x-hidden">
       {/* Hero Section - Popping Colors & Premium Vibe */}
-      <section className="relative min-h-[95vh] bg-white overflow-hidden flex items-center">
+      <section className="relative min-h-[100vh] bg-background overflow-hidden flex items-center transition-colors duration-500 font-header">
         {/* Decorative Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <motion.div
@@ -200,53 +204,53 @@ export default function HomePage() {
               scale: [1, 1.2, 1],
             }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute -top-1/4 -left-1/4 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px]"
+            className="absolute -top-1/4 -left-1/4 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px]"
           />
           <motion.div
             animate={{
               scale: [1, 1.1, 1],
-              opacity: [0.02, 0.04, 0.02]
+              opacity: [0.03, 0.05, 0.03]
             }}
             transition={{ duration: 15, repeat: Infinity, ease: "linear", delay: 2 }}
-            className="absolute -bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-[#FF6699]/20 rounded-full blur-[100px]"
+            className="absolute -bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px]"
           />
         </div>
 
-        <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-20 py-12">
+        <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-20 py-24">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-20 items-center">
+            <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-24 items-center">
               {/* Left Content */}
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="space-y-10"
+                className="space-y-12"
               >
                 {/* Main Heading */}
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                   >
-                    <Badge variant="outline" className="px-4 py-1.5 border-primary/20 text-primary bg-primary/5 rounded-full mb-6 animate-fade-in">
-                      <Sparkles className="w-3.5 h-3.5 mr-2 inline" />
+                    <Badge variant="outline" className="px-6 py-2 border-primary/20 text-primary bg-primary/5 rounded-full mb-8 font-bold tracking-[0.2em] uppercase text-xs">
+                      <Sparkles className="w-4 h-4 mr-3 inline" />
                       {t.home.business.badge}
                     </Badge>
                   </motion.div>
 
-                  <div className="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[1.05] tracking-tight">
-                    <TextReveal text={t.home.hero.tagline1} className="text-gray-950 mb-2" />
-                    <TextReveal text={t.home.hero.tagline2} className="text-gradient drop-shadow-sm" delay={0.4} />
+                  <div className="text-7xl md:text-8xl lg:text-9xl font-black leading-[0.9] tracking-tighter">
+                    <TextReveal text={t.home.hero.tagline1} className="text-foreground" />
+                    <TextReveal text={t.home.hero.tagline2} className="text-primary" delay={0.4} />
                     <br />
                     <div className="flex flex-wrap items-center">
-                      <TextReveal text={t.home.hero.tagline3} className="text-gray-950 mr-4" delay={0.8} />
+                      <TextReveal text={t.home.hero.tagline3} className="text-foreground mr-6" delay={0.8} />
                       <div className="inline-flex items-center">
-                        <TextReveal text={t.home.hero.tagline4} className="text-gradient drop-shadow-sm" delay={1.2} />
+                        <TextReveal text={t.home.hero.tagline4} className="text-primary" delay={1.2} />
                         <motion.span
-                          animate={{ scale: [1, 1.2, 1], rotate: [0, 10, 0] }}
+                          animate={{ scale: [1, 1.2, 1], rotate: [0, 15, 0] }}
                           transition={{ duration: 2, repeat: Infinity }}
-                          className="ml-4 hidden md:inline-block"
+                          className="ml-8 hidden md:inline-block text-6xl"
                         >
                           🚀
                         </motion.span>
@@ -257,32 +261,31 @@ export default function HomePage() {
 
                 {/* Description */}
                 <motion.p
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.6 }}
-                  className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-2xl font-light"
+                  transition={{ duration: 1, delay: 1.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-2xl md:text-3xl text-muted-foreground leading-relaxed max-w-2xl font-light font-body"
                 >
                   {t.home.hero.description}
                 </motion.p>
 
                 {/* CTAs */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 2.0 }}
-                  className="flex flex-wrap gap-5 pt-4"
+                  transition={{ duration: 1, delay: 2.0, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-wrap gap-8 pt-8"
                 >
                   <Magnetic>
                     <Button
                       size="lg"
                       onClick={() => navigate('/business')}
-                      className="bg-primary hover:bg-primary/90 text-white px-10 py-8 text-lg rounded-2xl shadow-lg shadow-primary/20 hover:shadow-xl transition-all duration-300 group overflow-hidden relative"
+                      className="bg-primary hover:bg-foreground hover:text-background text-white px-12 py-10 text-xl rounded-2xl shadow-2xl shadow-primary/30 transition-all duration-700 group font-bold font-header"
                     >
-                      <span className="relative z-10 flex items-center gap-3">
+                      <span className="relative z-10 flex items-center gap-4">
                         {t.home.hero.exploreServices}
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                        <ArrowRight className="w-6 h-6 group-hover:translate-x-4 transition-transform duration-500" />
                       </span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                     </Button>
                   </Magnetic>
                   <Magnetic>
@@ -290,118 +293,91 @@ export default function HomePage() {
                       size="lg"
                       variant="outline"
                       onClick={() => navigate('/contact')}
-                      className="border-2 border-gray-950 px-10 py-8 text-lg rounded-2xl hover:bg-gray-950 hover:text-white transition-all duration-300 font-semibold"
+                      className="border-2 border-foreground hover:bg-foreground hover:text-background px-12 py-10 text-xl rounded-2xl transition-all duration-700 font-bold font-header bg-transparent"
                     >
                       {t.home.hero.getInTouch}
                     </Button>
                   </Magnetic>
                 </motion.div>
-
-                {/* Quick Stats Overlay (Floating Style) */}
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.9 }}
-                  className="grid grid-cols-2 gap-4 max-w-md pt-6"
-                >
-                  {stats.slice(0, 2).map((stat, index) => {
-                    const Icon = stat.icon;
-                    return (
-                      <div
-                        key={index}
-                        className="glass-card p-6 rounded-3xl hover:border-primary/30 transition-all group cursor-pointer border border-gray-100"
-                      >
-                        <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                          <Icon className="w-6 h-6 text-primary" />
-                        </div>
-                        <div className="text-3xl font-extrabold text-gray-950 mb-1">
-                          {stat.number}
-                        </div>
-                        <div className="text-sm font-medium text-gray-500 uppercase tracking-wider">
-                          {stat.label}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </motion.div>
               </motion.div>
 
               {/* Right Side - Dynamic Image Composition */}
-              <div className="relative h-[650px] lg:flex items-center justify-center hidden">
+              <div className="relative h-[800px] lg:flex items-center justify-center hidden">
                 {/* Decorative Circles */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] border border-primary/10 rounded-full animate-[spin_20s_linear_infinite]" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] border border-gray-200 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] border border-primary/10 rounded-full animate-[spin_30s_linear_infinite]" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] border border-border/50 rounded-full animate-[spin_20s_linear_infinite_reverse]" />
 
                 {/* Main Image - Floating Glass Container */}
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-                  className="relative z-20 w-[420px] h-[550px] rotate-2 hover:rotate-0 transition-transform duration-700"
+                  initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 2 }}
+                  transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+                  whileHover={{ rotate: 0, scale: 1.02 }}
+                  className="relative z-20 w-[450px] h-[650px]"
                 >
-                  <div className="w-full h-full bg-white p-3 rounded-[40px] shadow-2xl overflow-hidden relative group">
+                  <div className="w-full h-full bg-card p-4 rounded-[64px] shadow-2xl overflow-hidden relative group border-4 border-card/50 backdrop-blur-3xl">
                     <ImageWithFallback
                       src={heroImages[currentImageIndex]?.url || ''}
                       alt={heroImages[currentImageIndex]?.alt || ''}
-                      className="w-full h-full object-cover rounded-[32px] transition-all duration-1000 group-hover:scale-105"
+                      className="w-full h-full object-cover rounded-[48px] transition-all duration-[2s] group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
 
                     {/* Floating Info Tag */}
                     <motion.div
-                      animate={{ y: [0, -10, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute bottom-10 -right-10 bg-white p-6 rounded-3xl shadow-2xl glass-card border-primary/20 max-w-[200px]"
+                      animate={{ y: [0, -15, 0] }}
+                      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute bottom-16 -right-16 bg-card/80 backdrop-blur-2xl p-8 rounded-[40px] shadow-2xl border border-primary/20 max-w-[240px] z-30"
                     >
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                        <span className="text-xs font-bold text-gray-800 uppercase tracking-widest">Live Solutions</span>
+                      <div className="flex items-center gap-4 mb-3">
+                        <div className="w-3 h-3 bg-primary rounded-full animate-ping" />
+                        <span className="text-xs font-black text-foreground uppercase tracking-[0.2em] font-header">Global Impact</span>
                       </div>
-                      <p className="text-sm text-gray-600 font-medium leading-snug">Empowering businesses across borders.</p>
+                      <p className="text-base text-muted-foreground font-light leading-relaxed font-body">Empowering visionaries across borders since 2014.</p>
                     </motion.div>
                   </div>
                 </motion.div>
 
                 {/* Secondary Images - Cascading Style */}
                 <motion.div
-                  initial={{ opacity: 0, x: 100 }}
+                  initial={{ opacity: 0, x: 150 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1, delay: 0.6 }}
-                  className="absolute -top-10 -right-10 w-44 h-44 z-30"
+                  transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute -top-10 -right-10 w-56 h-56 z-30"
                 >
-                  <div className="w-full h-full bg-white p-2 rounded-3xl shadow-xl overflow-hidden hover:scale-110 transition-transform duration-500 -rotate-6 hover:rotate-0">
+                  <div className="w-full h-full bg-card p-3 rounded-[40px] shadow-2xl overflow-hidden hover:scale-110 transition-transform duration-700 -rotate-12 hover:rotate-0 border-2 border-card/50">
                     <ImageWithFallback
                       src={smallImages1[smallImageIndex1]?.url || ''}
                       alt={smallImages1[smallImageIndex1]?.alt || ''}
-                      className="w-full h-full object-cover rounded-2xl transition-all duration-700 hover:scale-105"
+                      className="w-full h-full object-cover rounded-[32px] transition-all duration-1000"
                     />
                   </div>
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, x: -100 }}
+                  initial={{ opacity: 0, x: -150 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1, delay: 0.8 }}
-                  className="absolute -bottom-10 -left-10 w-56 h-56 z-30"
+                  transition={{ duration: 1.2, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute -bottom-20 -left-10 w-64 h-64 z-30"
                 >
-                  <div className="w-full h-full bg-white p-2 rounded-[32px] shadow-xl overflow-hidden hover:scale-110 transition-transform duration-500 rotate-6 hover:rotate-0">
+                  <div className="w-full h-full bg-card p-3 rounded-[48px] shadow-2xl overflow-hidden hover:scale-110 transition-transform duration-700 rotate-12 hover:rotate-0 border-2 border-card/50">
                     <ImageWithFallback
                       src={smallImages2[smallImageIndex2]?.url || ''}
                       alt={smallImages2[smallImageIndex2]?.alt || ''}
-                      className="w-full h-full object-cover rounded-[24px] transition-all duration-700 hover:scale-105"
+                      className="w-full h-full object-cover rounded-[36px] transition-all duration-1000"
                     />
                   </div>
                 </motion.div>
 
-                {/* Carousel Navigation Dots (Floating) */}
-                <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-white/80 backdrop-blur-md p-3 rounded-full border border-gray-100 shadow-lg">
+                {/* Carousel Navigation Dots */}
+                <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-card/30 backdrop-blur-2xl p-4 rounded-full border border-border/50 shadow-2xl">
                   {heroImages.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
-                      className={`transition-all duration-500 ${currentImageIndex === index
-                        ? 'w-10 h-2.5 bg-primary rounded-full'
-                        : 'w-2.5 h-2.5 bg-gray-200 rounded-full hover:bg-primary/50'
+                      className={`transition-all duration-700 ${currentImageIndex === index
+                        ? 'w-12 h-3 bg-primary rounded-full shadow-lg shadow-primary/30'
+                        : 'w-3 h-3 bg-muted-foreground/30 rounded-full hover:bg-primary/50'
                         }`}
                     />
                   ))}
@@ -412,210 +388,234 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Stats - Premium Horizontal Bar */}
+      <section className="py-24 bg-background relative z-20 border-y border-border/50">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-24">
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  className="text-center group"
+                >
+                  <Magnetic>
+                    <div className="w-16 h-16 bg-muted rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-500 group-hover:shadow-xl group-hover:shadow-primary/30">
+                      <Icon className="w-8 h-8 text-foreground group-hover:text-white transition-colors" />
+                    </div>
+                  </Magnetic>
+                  <div className="text-6xl font-black text-foreground mb-2 font-header tracking-tighter group-hover:text-primary transition-colors">
+                    {stat.number}
+                  </div>
+                  <div className="text-xs font-bold text-muted-foreground uppercase tracking-[0.3em] font-header">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* Business Areas - Premium Grid Layout */}
-      <section className="py-32 bg-gray-50/50 relative overflow-hidden">
-        {/* Decorative Background for Cascading Effect */}
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/5 -skew-x-12 translate-x-1/2 pointer-events-none" />
+      <section className="py-40 bg-muted/20 relative overflow-hidden transition-colors duration-500">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/[0.02] -skew-x-12 translate-x-1/4 pointer-events-none" />
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center mb-32"
           >
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "3rem" }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="h-1 bg-primary/30"
-              />
-              <Badge variant="outline" className="px-5 py-2 border-primary/20 text-primary bg-primary/5 rounded-full text-xs font-bold tracking-widest uppercase">
+            <div className="flex items-center justify-center gap-6 mb-10">
+              <div className="w-16 h-px bg-border" />
+              <Badge variant="outline" className="px-6 py-2 border-border text-muted-foreground text-xs font-black tracking-[0.3em] uppercase rounded-full">
                 {t.home.business.badge}
               </Badge>
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "3rem" }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="h-1 bg-primary/30"
-              />
+              <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-5xl md:text-7xl font-extrabold text-gray-950 mb-8 tracking-tight">
+            <h2 className="text-6xl md:text-8xl font-black text-foreground mb-10 tracking-tighter leading-[0.9] font-header">
               {t.home.business.title}
             </h2>
-            <p className="text-xl md:text-2xl text-gray-500 max-w-4xl mx-auto font-light leading-relaxed">
+            <p className="text-2xl md:text-3xl text-muted-foreground max-w-4xl mx-auto font-light leading-relaxed font-body">
               {t.home.business.description}
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-10 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 max-w-7xl mx-auto">
             {businesses.map((business, index) => {
               const Icon = business.icon;
               return (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 50 }}
+                  key={business.id}
+                  initial={{ opacity: 0, y: 60 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                  className="group"
+                  transition={{ duration: 1, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="bg-white p-1 pb-1 rounded-[40px] shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden relative">
-                    <div className="bg-white p-10 rounded-[38px] transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-white group-hover:to-primary/5 h-full flex flex-col">
-                      {/* Floating Icon Container */}
-                      <div className="flex items-start justify-between mb-10">
-                        <Magnetic>
-                          <div className="w-20 h-20 bg-gray-50 rounded-3xl flex items-center justify-center transition-all duration-500 group-hover:bg-primary group-hover:scale-110 group-hover:rotate-6 shadow-sm group-hover:shadow-primary/40">
-                            <Icon className="w-10 h-10 text-gray-950 transition-colors duration-500 group-hover:text-white" />
-                          </div>
-                        </Magnetic>
-                        <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                          <ArrowUpRight className="w-6 h-6 text-gray-300 group-hover:text-primary transition-colors" />
+                  <Card className="bg-card group cursor-pointer border-2 border-border p-12 rounded-[64px] hover:border-primary/50 hover:shadow-2xl transition-all duration-700 h-full flex flex-col relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-1000" />
+
+                    <div className="flex items-start justify-between mb-12 relative z-10">
+                      <Magnetic>
+                        <div className="w-24 h-24 bg-muted border border-border rounded-3xl flex items-center justify-center transition-all duration-700 group-hover:bg-primary group-hover:scale-110 group-hover:rotate-12 shadow-sm group-hover:shadow-xl group-hover:shadow-primary/40">
+                          <Icon className="w-12 h-12 text-foreground transition-colors duration-500 group-hover:text-white" />
                         </div>
-                      </div>
-
-                      <h3 className="text-3xl font-extrabold mb-5 text-gray-950 group-hover:text-primary transition-colors">
-                        {business.title}
-                      </h3>
-
-                      <p className="text-lg text-gray-500 mb-8 leading-relaxed font-light">
-                        {business.description}
-                      </p>
-
-                      <div className="mt-auto space-y-4">
-                        <div className="h-px bg-gray-100 w-full mb-6 group-hover:bg-primary/10 transition-colors" />
-                        {business.features.map((feature, i) => (
-                          <div key={i} className="flex items-center gap-4 text-gray-700 font-medium group/feat">
-                            <div className="w-2 h-2 rounded-full bg-primary/20 group-hover:bg-primary group-hover:scale-125 transition-all" />
-                            <span className="group-hover:translate-x-1 transition-transform">{feature}</span>
-                          </div>
-                        ))}
+                      </Magnetic>
+                      <div className="w-14 h-14 rounded-full border border-border flex items-center justify-center group-hover:bg-primary/20 transition-all duration-500">
+                        <ArrowUpRight className="w-7 h-7 text-muted-foreground group-hover:text-primary transition-all group-hover:rotate-45" />
                       </div>
                     </div>
-                  </div>
+
+                    <h3 className="text-4xl font-black mb-6 text-foreground group-hover:text-primary transition-colors font-header tracking-tight relative z-10">
+                      {business.title}
+                    </h3>
+
+                    <p className="text-xl text-muted-foreground mb-10 leading-relaxed font-light font-body relative z-10">
+                      {business.description}
+                    </p>
+
+                    <div className="mt-auto space-y-6 relative z-10">
+                      <div className="h-px bg-border w-full mb-8 group-hover:bg-primary/20 transition-colors" />
+                      {business.features.map((feature, i) => (
+                        <div key={i} className="flex items-center gap-5 text-foreground/80 font-medium group/feat">
+                          <div className="w-2.5 h-2.5 rounded-full bg-primary/30 group-hover:bg-primary group-hover:scale-150 transition-all duration-500" />
+                          <span className="group-hover:translate-x-2 transition-transform duration-500 font-body text-lg">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </Card>
                 </motion.div>
               );
             })}
           </div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="mt-24 text-center"
+            className="mt-32 text-center"
           >
-            <Button
-              size="lg"
-              onClick={() => navigate('/business')}
-              className="bg-gray-950 hover:bg-primary text-white gap-3 px-12 py-8 text-lg rounded-2xl transition-all duration-300 shadow-xl"
-            >
-              {t.home.business.viewAllServices}
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1" />
-            </Button>
+            <Magnetic>
+              <Button
+                size="lg"
+                onClick={() => navigate('/business')}
+                className="bg-primary hover:bg-foreground hover:text-background text-white gap-4 px-16 py-12 text-2xl rounded-3xl transition-all duration-700 shadow-2xl shadow-primary/30 font-bold font-header"
+              >
+                {t.home.business.viewAllServices}
+                <ArrowRight className="w-7 h-7 group-hover:translate-x-3 transition-transform duration-500" />
+              </Button>
+            </Magnetic>
           </motion.div>
         </div>
       </section>
 
-
       {/* Building Bridges Banner Section - Immersive Design */}
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Background Overlay with Parallax-like feel */}
+      <section className="relative h-[800px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1760842840049-ac860fd95766?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0b2t5byUyMGNpdHlzY2FwZSUyMHBhbm9yYW1hJTIwYXJjaGl0ZWN0dXJlfGVufDF8fHx8MTc2MzQ2NTMxNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
             alt="Tokyo Cityscape Panorama"
-            className="w-full h-full object-cover grayscale brightness-50 contrast-125 transition-transform duration-[10s] hover:scale-110"
+            className="w-full h-full object-cover grayscale brightness-[0.4] contrast-125 transition-transform duration-[15s] hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-950/80 via-transparent to-gray-950/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
           <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
         </div>
 
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-5xl mx-auto space-y-12"
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-6xl mx-auto space-y-16"
           >
-            <div className="w-24 h-1.5 bg-primary mx-auto rounded-full shadow-lg shadow-primary/40 animate-pulse" />
+            <div className="w-32 h-2 bg-primary mx-auto rounded-full shadow-2xl shadow-primary/50 animate-pulse" />
 
-            <h2 className="text-6xl md:text-8xl font-black text-white leading-tight tracking-tighter">
+            <h2 className="text-7xl md:text-9xl font-black text-white leading-[0.9] tracking-tighter font-header">
               {t.home.banner.title}
             </h2>
 
-            <p className="text-xl md:text-3xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-2xl md:text-4xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light font-body">
               {t.home.banner.description}
             </p>
 
-            <div className="flex flex-wrap gap-8 justify-center pt-8">
-              <Button
-                size="lg"
-                onClick={() => navigate('/about')}
-                className="bg-primary hover:bg-white hover:text-primary text-white px-12 py-8 text-xl rounded-2xl transition-all duration-500 shadow-2xl shadow-primary/40 group font-bold"
-              >
-                {t.home.banner.learnStory}
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
-              </Button>
-              <Button
-                size="lg"
-                onClick={() => navigate('/business')}
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-gray-950 px-12 py-8 text-xl rounded-2xl transition-all duration-500 font-bold"
-              >
-                {t.home.banner.exploreSolutions}
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
-              </Button>
+            <div className="flex flex-wrap gap-10 justify-center pt-10">
+              <Magnetic>
+                <Button
+                  size="lg"
+                  onClick={() => navigate('/about')}
+                  className="bg-primary hover:bg-white hover:text-primary text-white px-16 py-12 text-2xl rounded-3xl transition-all duration-700 shadow-2xl shadow-primary/50 group font-bold font-header"
+                >
+                  {t.home.banner.learnStory}
+                  <ArrowRight className="w-8 h-8 group-hover:translate-x-4 transition-transform duration-500" />
+                </Button>
+              </Magnetic>
+              <Magnetic>
+                <Button
+                  size="lg"
+                  onClick={() => navigate('/business')}
+                  variant="outline"
+                  className="border-4 border-white text-white hover:bg-white hover:text-gray-950 px-16 py-12 text-2xl rounded-3xl transition-all duration-700 font-bold font-header"
+                >
+                  {t.home.banner.exploreSolutions}
+                </Button>
+              </Magnetic>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Values Section - Modern Icon Grid */}
-      <section className="py-32 bg-white relative">
+      <section className="py-40 bg-background relative transition-colors duration-500">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-24"
+            className="text-center mb-32"
           >
-            <Badge variant="outline" className="px-5 py-2 border-primary/20 text-primary bg-primary/5 rounded-full mb-8 uppercase tracking-widest font-bold text-xs">
+            <Badge variant="outline" className="px-6 py-2 border-primary/20 text-primary bg-primary/5 rounded-full mb-10 uppercase tracking-[0.3em] font-black text-xs font-header">
               {t.home.values.badge}
             </Badge>
-            <h2 className="text-5xl md:text-7xl font-extrabold text-gray-950 mb-10 tracking-tight">
+            <h2 className="text-6xl md:text-8xl font-black text-foreground mb-10 tracking-tighter leading-[0.9] font-header">
               {t.home.values.title}
             </h2>
-            <p className="text-xl md:text-2xl text-gray-500 max-w-3xl mx-auto font-light leading-relaxed">
+            <p className="text-2xl md:text-3xl text-muted-foreground max-w-4xl mx-auto font-light leading-relaxed font-body">
               {t.home.values.description}
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto">
             {values.map((value, index) => {
               const Icon = value.icon;
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.9, y: 40 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="group h-full p-10 rounded-[40px] border border-gray-100 bg-gray-50/30 hover:bg-white hover:shadow-2xl hover:border-primary/20 transition-all duration-500 text-center">
-                    <div className="w-24 h-24 bg-white rounded-3xl shadow-md border border-gray-50 flex items-center justify-center mx-auto mb-10 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-primary transition-all duration-500 group-hover:shadow-primary/30">
-                      <Icon className="w-12 h-12 text-gray-950 group-hover:text-white transition-colors duration-500" />
-                    </div>
-                    <h3 className="text-2xl font-extrabold mb-5 text-gray-950 group-hover:text-primary transition-colors">
+                  <Card className="group h-full p-12 rounded-[56px] border-2 border-border bg-muted/20 hover:bg-card hover:shadow-2xl hover:border-primary/30 transition-all duration-700 text-center flex flex-col items-center">
+                    <Magnetic>
+                      <div className="w-28 h-28 bg-card border-2 border-border rounded-[32px] shadow-xl flex items-center justify-center mb-12 group-hover:scale-110 group-hover:rotate-12 group-hover:bg-primary transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-primary/40 group-hover:border-primary">
+                        <Icon className="w-14 h-14 text-foreground group-hover:text-white transition-colors duration-500" />
+                      </div>
+                    </Magnetic>
+                    <h3 className="text-3xl font-black mb-6 text-foreground group-hover:text-primary transition-colors font-header tracking-tight">
                       {value.title}
                     </h3>
-                    <p className="text-gray-500 leading-relaxed font-light">
+                    <p className="text-lg text-muted-foreground leading-relaxed font-light font-body">
                       {value.description}
                     </p>
-                  </div>
+                  </Card>
                 </motion.div>
               );
             })}
@@ -623,105 +623,107 @@ export default function HomePage() {
         </div>
       </section>
 
-
       {/* Latest News Section - Premium Content Cards */}
-      <section className="py-32 bg-gray-50/50">
+      <section className="py-40 bg-muted/20 border-y border-border/50">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20"
+            className="flex flex-col lg:row md:items-end justify-between gap-12 mb-32"
           >
-            <div className="max-w-3xl">
-              <Badge variant="outline" className="px-5 py-2 border-primary/20 text-primary bg-primary/5 rounded-full mb-8 font-bold tracking-widest uppercase text-xs">
+            <div className="max-w-4xl">
+              <Badge variant="outline" className="px-6 py-2 border-primary/20 text-primary bg-primary/5 rounded-full mb-10 font-black tracking-[0.3em] uppercase text-xs font-header">
                 {t.home.news.badge}
               </Badge>
-              <h2 className="text-5xl md:text-7xl font-extrabold text-gray-950 tracking-tight">
+              <h2 className="text-6xl md:text-8xl font-black text-foreground tracking-tighter leading-[0.9] font-header">
                 {t.home.news.title}
               </h2>
             </div>
-            <Button
-              variant="outline"
-              onClick={() => navigate('/news')}
-              className="border-2 border-gray-950 text-gray-950 hover:bg-gray-950 hover:text-white px-8 py-6 rounded-2xl transition-all duration-300 font-bold"
-            >
-              {t.home.news.viewAll}
-              <ArrowRight className="w-5 h-5 ml-3" />
-            </Button>
+            <Magnetic>
+              <Button
+                variant="outline"
+                onClick={() => navigate('/news')}
+                className="border-4 border-foreground hover:bg-foreground hover:text-background px-12 py-10 rounded-2xl transition-all duration-700 font-black font-header text-xl bg-transparent"
+              >
+                {t.home.news.viewAll}
+                <ArrowRight className="w-6 h-6 ml-4 group-hover:translate-x-3 transition-transform duration-500" />
+              </Button>
+            </Magnetic>
           </motion.div>
 
-          <div className="grid lg:grid-cols-12 gap-10 max-w-7xl mx-auto">
-            {/* Featured news card across 7 columns */}
+          <div className="grid lg:grid-cols-12 gap-12 max-w-7xl mx-auto">
+            {/* Featured news card */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-7"
             >
-              <div
+              <Card
                 onClick={() => navigate('/news/1')}
-                className="group cursor-pointer relative overflow-hidden rounded-[40px] shadow-xl hover:shadow-2xl transition-all duration-700 h-full min-h-[500px]"
+                className="group cursor-pointer relative overflow-hidden rounded-[64px] shadow-2xl transition-all duration-1000 h-full min-h-[650px] border-none"
               >
                 <ImageWithFallback
                   src="https://images.unsplash.com/photo-1557426282-08101666870a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMG1lZXRpbmclMjB0b2t5b3xlbnwxfHx8fDE3NjM0MDc5ODV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                   alt="Featured News"
-                  className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-950/95 via-gray-950/20 to-transparent" />
 
-                <div className="absolute bottom-0 left-0 p-12 w-full">
-                  <div className="flex items-center gap-4 mb-6">
-                    <span className="px-4 py-1.5 bg-primary text-white text-xs font-bold rounded-full uppercase tracking-widest shadow-lg shadow-primary/30">
+                <div className="absolute bottom-0 left-0 p-16 w-full">
+                  <div className="flex items-center gap-6 mb-8">
+                    <span className="px-6 py-2 bg-primary text-white text-xs font-black rounded-full uppercase tracking-[0.2em] shadow-2xl shadow-primary/50 font-header">
                       Featured
                     </span>
-                    <span className="text-gray-300 text-sm font-medium flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
+                    <span className="text-gray-300 text-sm font-medium flex items-center gap-3 font-header">
+                      <Calendar className="w-5 h-5 text-primary" />
                       March 15, 2024
                     </span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-6 group-hover:text-primary transition-colors leading-tight">
+                  <h3 className="text-4xl md:text-5xl font-black text-white mb-8 group-hover:text-primary transition-colors leading-[1.1] font-header tracking-tight">
                     Expanding our Digital Footprint in the South Asian Market
                   </h3>
-                  <p className="text-gray-300 text-lg mb-8 line-clamp-2 font-light max-w-2xl">
+                  <p className="text-gray-300 text-xl mb-12 line-clamp-2 font-light max-w-2xl font-body">
                     Our latest initiative aimed at bringing cutting-edge technology solutions to growing businesses in Bangladesh...
                   </p>
-                  <div className="flex items-center text-primary font-bold group">
+                  <div className="flex items-center text-primary font-black group text-xl font-header uppercase tracking-widest">
                     Read Story
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center ml-4 group-hover:bg-primary group-hover:text-white transition-all">
-                      <ArrowRight className="w-5 h-5" />
+                    <div className="w-14 h-14 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center ml-6 group-hover:bg-primary group-hover:text-white transition-all duration-500 group-hover:translate-x-4">
+                      <ArrowRight className="w-7 h-7" />
                     </div>
                   </div>
                 </div>
-              </div>
+              </Card>
             </motion.div>
 
-            {/* Side news list across 5 columns */}
-            <div className="lg:col-span-5 space-y-8">
-              {[2, 3, 4].map((id) => (
+            {/* Side news list */}
+            <div className="lg:col-span-5 space-y-10">
+              {[2, 3, 4].map((id, index) => (
                 <motion.div
                   key={id}
-                  initial={{ opacity: 0, x: 30 }}
+                  initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: id * 0.1 }}
+                  transition={{ duration: 0.8, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
                   onClick={() => navigate(`/news/${id}`)}
-                  className="group cursor-pointer glass-card p-6 rounded-[32px] hover:border-primary/20 hover:shadow-2xl transition-all duration-500 bg-white/50 backdrop-blur-xl border border-gray-100/50 flex gap-6 items-center"
+                  className="group cursor-pointer bg-card border border-border p-8 rounded-[48px] hover:border-primary/50 hover:shadow-2xl transition-all duration-700 flex gap-8 items-center"
                 >
-                  <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-md group-hover:shadow-primary/20 transition-all flex-shrink-0">
+                  <div className="w-32 h-32 rounded-[32px] overflow-hidden shadow-xl flex-shrink-0 border-2 border-border group-hover:border-primary/30 transition-all duration-700">
                     <ImageWithFallback
-                      src={`https://picsum.photos/seed/news${id}/200/200`}
+                      src={`https://picsum.photos/seed/news${id}/300/300`}
                       alt={`News ${id}`}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
                   </div>
                   <div className="flex-1">
-                    <div className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
-                      <Clock className="w-3.5 h-3.5" />
+                    <div className="text-muted-foreground text-xs font-black uppercase tracking-[0.2em] mb-3 flex items-center gap-3 font-header">
+                      <Clock className="w-4 h-4 text-primary" />
                       2 Days ago
                     </div>
-                    <h4 className="text-xl font-bold text-gray-950 group-hover:text-primary transition-colors line-clamp-2 leading-snug">
-                      Strategic Partnership with Global Tech Innovators {id}
+                    <h4 className="text-2xl font-black text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-snug font-header tracking-tight">
+                      Strategic Partnership with Global Innovators {id}
                     </h4>
                   </div>
                 </motion.div>
@@ -731,38 +733,37 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Social Media Link / Secondary CTA */}
-      <section className="py-24 bg-gray-950 text-white relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-          <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/2" />
-          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] translate-y-1/2 translate-x-1/2" />
-        </div>
+      {/* Social Media Link - High Impact */}
+      <section className="py-32 bg-foreground text-background relative overflow-hidden transition-colors duration-500">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
 
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-5xl mx-auto"
           >
-            <h2 className="text-4xl md:text-6xl font-black mb-12 tracking-tighter">
-              Stay Connected with <span className="text-primary">Axsh Tech</span>
+            <h2 className="text-5xl md:text-8xl font-black mb-20 tracking-tighter leading-[0.9] font-header">
+              Join our <span className="text-primary">Global</span> Community
             </h2>
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex flex-wrap justify-center gap-12">
               {[
                 { icon: Facebook, name: 'Facebook' },
                 { icon: Linkedin, name: 'LinkedIn' },
                 { icon: Twitter, name: 'Twitter' },
                 { icon: Instagram, name: 'Instagram' }
               ].map((social, i) => (
-                <motion.a
-                  key={i}
-                  href="#"
-                  whileHover={{ y: -5, scale: 1.05 }}
-                  className="w-20 h-20 bg-white/5 backdrop-blur-md rounded-[28px] border border-white/10 flex items-center justify-center hover:bg-primary transition-all duration-500 shadow-xl group"
-                >
-                  <social.icon className="w-8 h-8 text-gray-400 group-hover:text-white transition-colors" />
-                </motion.a>
+                <Magnetic key={i}>
+                  <motion.a
+                    href="#"
+                    whileHover={{ y: -10 }}
+                    className="w-24 h-24 bg-background/5 backdrop-blur-3xl rounded-[36px] border border-background/10 flex items-center justify-center hover:bg-primary transition-all duration-700 shadow-2xl group"
+                  >
+                    <social.icon className="w-10 h-10 text-background group-hover:text-white transition-colors duration-500" />
+                  </motion.a>
+                </Magnetic>
               ))}
             </div>
           </motion.div>
@@ -770,45 +771,40 @@ export default function HomePage() {
       </section>
 
       {/* Ready to Connect CTA Section - High Impact */}
-      <section className="relative py-40 overflow-hidden bg-white">
-        <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute inset-0 bg-primary/5 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
-        </div>
+      <section className="relative py-48 overflow-hidden bg-background">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.05)_0%,transparent_70%)] pointer-events-none" />
 
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-5xl mx-auto"
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-6xl mx-auto"
           >
-            <Badge variant="outline" className="px-6 py-2 border-primary text-primary bg-primary/5 rounded-full mb-10 font-bold uppercase tracking-[0.2em] text-sm">
-              Next Steps
+            <Badge variant="outline" className="px-8 py-3 border-primary text-primary bg-primary/5 rounded-full mb-12 font-black uppercase tracking-[0.3em] text-sm font-header">
+              The Future Awaits
             </Badge>
-            <h2 className="text-6xl md:text-8xl font-black text-gray-950 mb-10 tracking-tighter leading-[0.9]">
+            <h2 className="text-7xl md:text-9xl font-black text-foreground mb-12 tracking-tighter leading-[0.85] font-header">
               {t.home.cta.title}
             </h2>
-            <p className="text-2xl md:text-3xl text-gray-500 max-w-3xl mx-auto mb-16 font-light leading-relaxed">
+            <p className="text-3xl md:text-4xl text-muted-foreground max-w-4xl mx-auto mb-20 font-light leading-relaxed font-body">
               {t.home.cta.description}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-8 justify-center">
-              <Button
-                size="lg"
-                onClick={() => navigate('/contact')}
-                className="bg-primary hover:bg-gray-950 text-white px-12 py-10 text-xl rounded-2xl transition-all duration-500 shadow-2xl shadow-primary/40 group font-bold min-w-[280px]"
-              >
-                {t.home.cta.startConversation}
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-3 transition-transform" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => navigate('/business')}
-                className="border-2 border-gray-200 hover:border-gray-950 text-gray-950 px-12 py-10 text-xl rounded-2xl transition-all duration-500 font-bold min-w-[280px]"
-              >
-                {t.home.cta.viewAllServices}
-              </Button>
+            <div className="flex flex-col sm:flex-row gap-10 justify-center">
+              <Magnetic>
+                <Button
+                  size="lg"
+                  onClick={() => navigate('/contact')}
+                  className="bg-primary hover:bg-foreground hover:text-background text-white px-20 py-14 text-3xl rounded-[36px] transition-all duration-700 shadow-2xl shadow-primary/50 group font-black font-header min-w-[350px]"
+                >
+                  <span className="flex items-center gap-6">
+                    Start Project
+                    <ArrowRight className="w-10 h-10 group-hover:translate-x-6 transition-transform duration-700" />
+                  </span>
+                </Button>
+              </Magnetic>
             </div>
           </motion.div>
         </div>

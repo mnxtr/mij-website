@@ -5,30 +5,44 @@ import { Badge } from '../ui/badge';
 import { motion } from 'motion/react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { useState, useEffect } from 'react';
-import { 
-  Globe2, 
-  FileCheck, 
-  Truck, 
-  GraduationCap, 
-  Languages,
+import {
+  Globe2,
+  Truck,
   ArrowRight,
   Package,
   Users,
-  Code,
   Briefcase,
-  Check,
   Shield,
-  Target
+  Target,
+  Award
 } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../translations';
+import TextReveal from '../animations/TextReveal';
+import Magnetic from '../animations/Magnetic';
+
+const FloatingShape = ({ className, delay = 0 }: { className?: string; delay?: number }) => (
+  <motion.div
+    animate={{
+      y: [0, -20, 0],
+      rotate: [0, 10, 0],
+      scale: [1, 1.05, 1],
+    }}
+    transition={{
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay,
+    }}
+    className={`absolute rounded-full mix-blend-multiply filter blur-2xl opacity-20 pointer-events-none ${className}`}
+  />
+);
 
 export default function ServicesPage() {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const t = getTranslation(language);
-  
-  const [touchedButton, setTouchedButton] = useState<string | null>(null);
+
   const [animatedImages, setAnimatedImages] = useState<{ [key: string]: boolean }>({});
   const [registeredImages, setRegisteredImages] = useState<string[]>([]);
   const [touchedCard, setTouchedCard] = useState<string | null>(null);
@@ -43,66 +57,62 @@ export default function ServicesPage() {
     });
   };
 
-  // Unregister image when it leaves viewport (turn back to grayscale)
-  const unregisterImage = (imageId: string) => {
-    setAnimatedImages(prev => ({ ...prev, [imageId]: false }));
-  };
-
-  // Auto-animate registered images in a cascading wave pattern - turn to color and keep until scrolled off
+  // Auto-animate registered images in a cascading wave pattern
   useEffect(() => {
     if (registeredImages.length === 0) return;
 
     let currentIndex = 0;
-    
     const interval = setInterval(() => {
       const imageId = registeredImages[currentIndex];
-      
-      // Turn current image to color and keep it
-      if (!animatedImages[imageId]) {
+      if (imageId && !animatedImages[imageId]) {
         setAnimatedImages(prev => ({ ...prev, [imageId]: true }));
       }
-      
-      // Move to next image
       currentIndex = (currentIndex + 1) % registeredImages.length;
-    }, 600); // Stagger timing for wave effect
+    }, 600);
 
     return () => clearInterval(interval);
   }, [registeredImages, animatedImages]);
-  
+
   const serviceCategories = [
     {
+      id: 'consulting',
       lucideIcon: Briefcase,
       image: 'https://images.unsplash.com/photo-1758691736084-4ef3e6f6a2cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGNvbnN1bHRpbmclMjBzdHJhdGVneXxlbnwxfHx8fDE3NjM0NDQxMDh8MA&ixlib=rb-4.1.0&q=80&w=1080',
       title: () => t.services.main.consulting.title,
       description: () => t.services.main.consulting.description,
     },
     {
+      id: 'sourcing',
       lucideIcon: Package,
       image: 'https://images.unsplash.com/photo-1725449264087-28926bc1a610?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsb2dpc3RpY3MlMjBzaGlwcGluZyUyMGNvbnRhaW5lcnN8ZW58MXx8fHwxNzYzNDQ5ODM2fDA&ixlib=rb-4.1.0&q=80&w=1080',
       title: () => t.services.main.sourcing.title,
       description: () => t.services.main.sourcing.description,
     },
     {
+      id: 'partnership',
       lucideIcon: Users,
       image: 'https://images.unsplash.com/photo-1600506451234-9e555c0c8d05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxKYXBhbmVzZSUyMG9mZmljZSUyMHRlYW13b3JrfGVufDF8fHx8MTc2MzMwNjQ1M3ww&ixlib=rb-4.1.0&q=80&w=1080',
       title: () => t.services.main.partnership.title,
       description: () => t.services.main.partnership.description,
     },
     {
+      id: 'logistics',
       lucideIcon: Truck,
       image: 'https://images.unsplash.com/photo-1531498860502-7c67cf02f657?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50JTIwY29kaW5nfGVufDF8fHx8MTc2MzM2ODkwN3ww&ixlib=rb-4.1.0&q=80&w=1080',
       title: () => t.services.main.logistics.title,
       description: () => t.services.main.logistics.description,
     },
     {
+      id: 'localization',
       lucideIcon: Globe2,
       image: 'https://images.unsplash.com/photo-1515355252367-42ae86cb92f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbm5vdmF0aW9uJTIwdGVjaG5vbG9neSUyMG9mZmljZXxlbnwxfHx8fDE3NjM0NjcxMDh8MA&ixlib=rb-4.1.0&q=80&w=1080',
       title: () => t.services.main.localization.title,
       description: () => t.services.main.localization.description,
     },
     {
+      id: 'support',
       lucideIcon: Shield,
-      image: 'https://images.unsplash.com/photo-1762968274962-20c12e6e8ecd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGNvbmZlcmVuY2UlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc2MzM4MzkyNHww&ixlib=rb-4.1.0&q=80&w=1080',
+      image: 'https://images.unsplash.com/photo-1762968274962-20c12e6e8ecd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGNvbmZlcmVuY2UlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc2MzI1MTI4OHww&ixlib=rb-4.1.0&q=80&w=1080',
       title: () => t.services.main.support.title,
       description: () => t.services.main.support.description,
     },
@@ -155,119 +165,129 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-background transition-colors duration-500 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="py-24 md:py-32 bg-gray-50">
-        <div className="container mx-auto px-6 md:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
+      <section className="relative py-32 md:py-48 bg-background overflow-hidden font-header">
+        {/* Floating background elements for premium feel */}
+        <FloatingShape className="w-96 h-96 bg-primary/10 -top-10 -left-10" />
+        <FloatingShape className="w-80 h-80 bg-primary/5 -bottom-20 right-20" delay={2} />
+        <FloatingShape className="w-64 h-64 bg-primary/5 top-40 right-1/4" delay={4} />
+
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="max-w-5xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center justify-center gap-6 mb-12"
+            >
+              <div className="w-16 h-px bg-primary/20" />
+              <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5 px-6 py-2 text-sm tracking-[0.3em] uppercase rounded-full font-bold">
                 {t.services.badge}
               </Badge>
-              <div className="w-12 h-0.5 bg-gray-900" />
-            </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-              {t.services.hero.title} <span className="text-[#D4387F]">{t.services.hero.highlight}</span>
+              <div className="w-16 h-px bg-primary/20" />
+            </motion.div>
+
+            <h1 className="text-7xl md:text-9xl font-black mb-10 leading-[0.9] tracking-tighter text-foreground">
+              <TextReveal text={t.services.hero.title} />
+              <TextReveal text={t.services.hero.highlight} className="text-primary" delay={0.5} />
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-4xl mx-auto font-light font-body"
+            >
               {t.services.hero.description}
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
         </div>
       </section>
 
       {/* Main Services */}
-      <section className="py-24">
+      <section className="py-32 bg-background relative z-10">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-4xl mx-auto mb-24"
           >
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
+            <div className="flex items-center justify-center gap-6 mb-8">
+              <div className="w-16 h-px bg-border" />
+              <Badge variant="outline" className="border-border text-muted-foreground text-xs tracking-[0.2em] uppercase px-4 py-1">
                 {t.services.main.badge}
               </Badge>
-              <div className="w-12 h-0.5 bg-gray-900" />
+              <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+            <h2 className="text-5xl md:text-7xl font-black text-foreground tracking-tighter font-header">
               {t.services.main.title}
             </h2>
           </motion.div>
 
-          <div className="space-y-32 max-w-7xl mx-auto">
+          <div className="space-y-48 max-w-7xl mx-auto">
             {serviceCategories.map((service, index) => {
               const isEven = index % 2 === 0;
               const ServiceIcon = service.lucideIcon;
-              
+
               return (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
+                  key={service.id}
+                  initial={{ opacity: 0, y: 100 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                   onViewportEnter={() => registerImage(`service-${index}`)}
-                  onViewportLeave={() => unregisterImage(`service-${index}`)}
-                  className="relative"
+                  className="relative group"
                 >
-                  <div className={`grid lg:grid-cols-2 gap-16 items-center ${!isEven ? 'lg:grid-flow-dense' : ''}`}>
-                    <div className={`space-y-8 ${!isEven ? 'lg:col-start-2' : ''}`}>
-                      <div className="w-16 h-16 border-2 border-gray-900 rounded-xl flex items-center justify-center">
-                        <ServiceIcon className="w-8 h-8 text-gray-900" />
-                      </div>
-                      
-                      <div>
-                        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+                  <div className={`grid lg:grid-cols-2 gap-20 items-center ${!isEven ? 'lg:grid-flow-dense' : ''}`}>
+                    <div className={`space-y-12 ${!isEven ? 'lg:col-start-2' : ''}`}>
+                      <Magnetic>
+                        <div className="w-24 h-24 bg-muted border border-border rounded-3xl flex items-center justify-center shadow-sm group-hover:bg-primary group-hover:border-primary group-hover:shadow-xl group-hover:shadow-primary/30 transition-all duration-700 group-hover:rotate-12">
+                          <ServiceIcon className="w-12 h-12 text-foreground group-hover:text-white transition-colors duration-500" />
+                        </div>
+                      </Magnetic>
+
+                      <div className="space-y-8">
+                        <h2 className="text-5xl md:text-7xl font-black text-foreground leading-[0.95] tracking-tighter font-header">
                           {service.title()}
                         </h2>
-                        <p className="text-xl text-gray-600 leading-relaxed">
+                        <p className="text-2xl text-muted-foreground leading-relaxed font-light font-body">
                           {service.description()}
                         </p>
                       </div>
 
-                      <Button 
-                        onClick={() => navigate('/contact')}
-                        onTouchStart={() => setTouchedButton(`learn-more-${index}`)}
-                        onTouchEnd={() => setTimeout(() => setTouchedButton(null), 300)}
-                        className={`text-white gap-3 px-8 py-6 transition-all ${
-                          touchedButton === `learn-more-${index}` ? 'bg-[#FF8FB8]' : 'bg-[#D4387F]'
-                        } hover:bg-[#FF8FB8]`}
-                        size="lg"
-                        style={{ WebkitTapHighlightColor: 'transparent' }}
-                      >
-                        {t.common.learnMore}
-                        <ArrowRight className="w-5 h-5" />
-                      </Button>
+                      <Magnetic>
+                        <Button
+                          onClick={() => navigate('/contact')}
+                          className="bg-primary hover:bg-foreground hover:text-background text-white gap-4 px-12 py-10 rounded-2xl transition-all duration-700 shadow-2xl shadow-primary/20 group font-bold text-xl font-header"
+                        >
+                          {t.common.learnMore}
+                          <ArrowRight className="w-6 h-6 group-hover:translate-x-3 transition-transform duration-500" />
+                        </Button>
+                      </Magnetic>
                     </div>
 
                     <div className={`relative ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                      <div 
-                        className="relative rounded-2xl overflow-hidden shadow-xl border-2 border-gray-900 p-2 bg-white"
+                      <motion.div
+                        whileHover={{ scale: 1.02, rotate: isEven ? 1 : -1 }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative rounded-[64px] overflow-hidden shadow-2xl p-6 bg-card border border-border"
                       >
-                        <div className="relative overflow-hidden rounded-lg">
+                        <div className="relative overflow-hidden rounded-[48px]">
                           <ImageWithFallback
                             src={service.image}
                             alt={service.title()}
-                            className={`w-full h-[500px] object-cover transition-all duration-500 ${
-                              animatedImages[`service-${index}`] ? 'grayscale-0' : 'grayscale'
-                            } hover:grayscale-0`}
-                            onTouchStart={() => registerImage(`service-${index}`)}
-                            onTouchEnd={() => unregisterImage(`service-${index}`)}
-                            style={{ WebkitTapHighlightColor: 'transparent' }}
+                            className={`w-full h-[700px] object-cover transition-all duration-[2s] ease-[0.16, 1, 0.3, 1] ${animatedImages[`service-${index}`] ? 'grayscale-0' : 'grayscale contrast-125'
+                              } group-hover:grayscale-0 group-hover:scale-110`}
                           />
                         </div>
-                        {/* Pink accent */}
-                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-[#D4387F] rounded-full" />
-                      </div>
+                        {/* Premium accents */}
+                        <div className="absolute top-12 right-12 w-16 h-16 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl flex items-center justify-center">
+                          <ServiceIcon className="w-8 h-8 text-white" />
+                        </div>
+                      </motion.div>
                     </div>
                   </div>
                 </motion.div>
@@ -278,142 +298,167 @@ export default function ServicesPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24 md:py-32 bg-gray-50">
-        <div className="container mx-auto px-6 md:px-12">
+      <section className="py-32 bg-muted/20 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.03)_0%,transparent_70%)] pointer-events-none" />
+
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-4xl mx-auto mb-24"
           >
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
+            <div className="flex items-center justify-center gap-6 mb-8">
+              <div className="w-16 h-px bg-border" />
+              <Badge variant="outline" className="border-border text-muted-foreground text-xs tracking-[0.2em] uppercase px-4 py-1">
                 {t.services.why.badge}
               </Badge>
-              <div className="w-12 h-0.5 bg-gray-900" />
+              <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+            <h2 className="text-5xl md:text-7xl font-black text-foreground tracking-tighter font-header">
               {t.services.why.title}
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              visible: { transition: { staggerChildren: 0.15 } },
+              hidden: {}
+            }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
+          >
             {whyChoose.map((item, index) => {
               const Icon = item.icon;
               const isTouched = touchedCard === `why-${index}`;
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  variants={{
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                    hidden: { opacity: 0, y: 40, scale: 0.95 }
+                  }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                   onTouchStart={() => setTouchedCard(`why-${index}`)}
                   onTouchEnd={() => setTimeout(() => setTouchedCard(null), 300)}
                   style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  <div className={`text-center group cursor-pointer bg-white border-2 p-8 rounded-lg transition-all h-full ${
-                    isTouched ? 'border-[#D4387F] shadow-lg' : 'border-gray-200'
-                  } hover:border-[#D4387F] hover:shadow-lg`}>
-                    <div className={`w-20 h-20 border-2 rounded-lg flex items-center justify-center mx-auto mb-6 transition-all ${
-                      isTouched ? 'bg-[#D4387F] border-[#D4387F]' : 'border-gray-900'
-                    } group-hover:bg-[#D4387F] group-hover:border-[#D4387F]`}>
-                      <Icon className={`w-10 h-10 transition-colors ${
-                        isTouched ? 'text-white' : 'text-gray-900'
-                      } group-hover:text-white`} />
-                    </div>
-                    <h3 className={`text-xl font-bold mb-3 transition-colors ${
-                      isTouched ? 'text-[#D4387F]' : 'text-gray-900'
-                    } group-hover:text-[#D4387F]`}>
-                      {item.title()}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {item.description()}
-                    </p>
-                  </div>
+                  <Card className={`border-2 text-center h-full transition-all duration-700 group cursor-pointer p-12 rounded-[48px] overflow-hidden ${isTouched ? 'border-primary shadow-2xl bg-primary/5 shadow-primary/10' : 'border-border bg-background hover:border-primary hover:shadow-2xl hover:shadow-primary/5'
+                    }`}>
+                    <CardContent className="p-0 space-y-8">
+                      <Magnetic>
+                        <div className={`w-24 h-24 border-2 rounded-[28px] flex items-center justify-center mx-auto transition-all duration-700 ${isTouched ? 'bg-primary border-primary scale-110 rotate-12 shadow-xl shadow-primary/30' : 'border-border bg-background group-hover:bg-primary group-hover:border-primary group-hover:scale-110 group-hover:rotate-12 group-hover:shadow-xl group-hover:shadow-primary/30'
+                          }`}>
+                          <Icon className={`w-12 h-12 transition-colors duration-500 ${isTouched ? 'text-white' : 'text-foreground group-hover:text-white'
+                            }`} />
+                        </div>
+                      </Magnetic>
+                      <h3 className={`text-3xl font-black transition-colors duration-500 ${isTouched ? 'text-primary' : 'text-foreground group-hover:text-primary'} tracking-tight font-header`}>
+                        {item.title()}
+                      </h3>
+                      <p className="text-xl text-muted-foreground leading-relaxed font-light font-body">
+                        {item.description()}
+                      </p>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Process Section */}
-      <section className="py-24">
+      <section className="py-32 bg-background relative">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-4xl mx-auto mb-24"
           >
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
+            <div className="flex items-center justify-center gap-6 mb-8">
+              <div className="w-16 h-px bg-border" />
+              <Badge variant="outline" className="border-border text-muted-foreground text-xs tracking-[0.2em] uppercase px-4 py-1">
                 {t.services.process.badge}
               </Badge>
-              <div className="w-12 h-0.5 bg-gray-900" />
+              <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+            <h2 className="text-5xl md:text-7xl font-black text-foreground tracking-tighter font-header">
               {t.services.process.title}
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              visible: { transition: { staggerChildren: 0.25 } },
+              hidden: {}
+            }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto"
+          >
             {processSteps.map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
+                variants={{
+                  visible: { opacity: 1, y: 0 },
+                  hidden: { opacity: 0, y: 60 }
+                }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-center group"
               >
-                <div className="w-20 h-20 border-2 border-[#D4387F] rounded-full flex items-center justify-center mx-auto mb-6 bg-[#D4387F]/5">
-                  <span className="text-3xl font-bold text-[#D4387F]">{step.number}</span>
-                </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900">
+                <Magnetic>
+                  <div className="w-32 h-32 border-2 border-primary/20 rounded-full flex items-center justify-center mx-auto mb-10 bg-primary/5 group-hover:bg-primary group-hover:border-primary transition-all duration-700 shadow-xl shadow-primary/5 group-hover:shadow-primary/30 relative">
+                    <span className="text-4xl font-black text-primary group-hover:text-white transition-colors duration-500 font-header">{step.number}</span>
+                    <div className="absolute inset-0 rounded-full border border-primary/40 scale-110 opacity-0 group-hover:opacity-100 group-hover:animate-ping pointer-events-none" />
+                  </div>
+                </Magnetic>
+                <h3 className="text-3xl font-black mb-6 text-foreground group-hover:text-primary transition-all duration-500 font-header tracking-tight">
                   {step.title()}
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-xl text-muted-foreground leading-relaxed font-light font-body">
                   {step.description()}
                 </p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-6 md:px-12">
+      <section className="py-32 bg-background relative overflow-hidden">
+        <div className="absolute -bottom-1/4 -right-1/4 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Card className="border-2 border-[#D4387F] bg-gradient-to-br from-[#D4387F]/5 to-[#D4387F]/10 max-w-5xl mx-auto">
-              <CardContent className="p-16 text-center">
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                  {t.services.cta.title} <span className="text-[#D4387F]">{t.services.cta.highlight}</span>
+            <Card className="border-2 border-primary/30 bg-card/50 backdrop-blur-2xl max-w-6xl mx-auto rounded-[64px] overflow-hidden shadow-2xl relative">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -mr-32 -mt-32" />
+              <CardContent className="p-20 text-center relative z-10">
+                <h2 className="text-6xl md:text-8xl font-black mb-10 text-foreground tracking-tighter leading-[0.9] font-header">
+                  <TextReveal text={t.services.cta.title} />
+                  <span className="text-primary">{t.services.cta.highlight}</span>
                 </h2>
-                <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-2xl md:text-3xl text-muted-foreground mb-16 max-w-3xl mx-auto font-light leading-relaxed font-body">
                   {t.services.cta.description}
                 </p>
-                <Button 
-                  onClick={() => navigate('/contact')}
-                  onTouchStart={() => setTouchedButton('contact-us-today')}
-                  onTouchEnd={() => setTimeout(() => setTouchedButton(null), 300)}
-                  className={`text-white gap-3 px-10 py-7 transition-all ${
-                    touchedButton === 'contact-us-today' ? 'bg-[#FF8FB8]' : 'bg-[#D4387F]'
-                  } hover:bg-[#FF8FB8]`}
-                  size="lg"
-                  style={{ WebkitTapHighlightColor: 'transparent' }}
-                >
-                  {t.common.contactUs}
-                  <ArrowRight className="w-5 h-5" />
-                </Button>
+                <Magnetic>
+                  <Button
+                    onClick={() => navigate('/contact')}
+                    className="bg-primary hover:bg-foreground hover:text-background text-white gap-4 px-16 py-12 rounded-3xl transition-all duration-700 shadow-2xl shadow-primary/30 group font-bold text-2xl font-header"
+                  >
+                    {t.common.contactUs}
+                    <ArrowRight className="w-8 h-8 group-hover:translate-x-4 transition-transform duration-500" />
+                  </Button>
+                </Magnetic>
               </CardContent>
             </Card>
           </motion.div>

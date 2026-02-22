@@ -1,53 +1,18 @@
 import { Card, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
-import { Calendar, Clock, ArrowRight, Newspaper } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Newspaper, Sparkles, TrendingUp, Search } from 'lucide-react';
 import { motion } from 'motion/react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import image_0b6f008db8209dab55941ae5a8e36a79c90ac176 from 'figma:asset/0b6f008db8209dab55941ae5a8e36a79c90ac176.png';
+import TextReveal from '../animations/TextReveal';
+import Magnetic from '../animations/Magnetic';
 
 export default function NewsPage() {
-  const [animatedImages, setAnimatedImages] = useState<{ [key: string]: boolean }>({});
-  const [registeredImages, setRegisteredImages] = useState<string[]>([]);
-  const [touchedCard, setTouchedCard] = useState<string | null>(null);
-  const [touchedImage, setTouchedImage] = useState<string | null>(null);
-
-  // Register image when it comes into view
-  const registerImage = (imageId: string) => {
-    setRegisteredImages(prev => {
-      if (!prev.includes(imageId)) {
-        return [...prev, imageId];
-      }
-      return prev;
-    });
-  };
-
-  // Unregister image when it leaves viewport (turn back to grayscale)
-  const unregisterImage = (imageId: string) => {
-    setAnimatedImages(prev => ({ ...prev, [imageId]: false }));
-  };
-
-  // Auto-animate registered images in a cascading wave pattern - turn to color and keep until scrolled off
-  useEffect(() => {
-    if (registeredImages.length === 0) return;
-
-    let currentIndex = 0;
-    
-    const interval = setInterval(() => {
-      const imageId = registeredImages[currentIndex];
-      
-      // Turn current image to color and keep it
-      if (!animatedImages[imageId]) {
-        setAnimatedImages(prev => ({ ...prev, [imageId]: true }));
-      }
-      
-      // Move to next image
-      currentIndex = (currentIndex + 1) % registeredImages.length;
-    }, 600); // Stagger timing for wave effect
-
-    return () => clearInterval(interval);
-  }, [registeredImages, animatedImages]);
+  const navigate = useNavigate();
+  const [activeCategory, setActiveCategory] = useState('All');
 
   const featuredArticle = {
     id: 1,
@@ -107,244 +72,252 @@ export default function NewsPage() {
     },
   ];
 
+  const categories = ['All', 'Business', 'Technology', 'Partnerships', 'Events'];
+
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-background transition-colors duration-500 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="py-24 md:py-32 bg-gray-50">
+      <section className="relative py-32 md:py-48 bg-background overflow-hidden font-header">
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <motion.div
+            animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.08, 0.05] }}
+            transition={{ duration: 12, repeat: Infinity }}
+            className="absolute -top-1/4 -left-1/4 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px]"
+          />
+        </div>
+
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="max-w-5xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center justify-center gap-6 mb-12"
+            >
+              <div className="w-16 h-px bg-primary/20" />
+              <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5 px-6 py-2 text-sm tracking-[0.3em] uppercase rounded-full font-bold">
+                Knowledge & News
+              </Badge>
+              <div className="w-16 h-px bg-primary/20" />
+            </motion.div>
+
+            <h1 className="text-7xl md:text-9xl font-black mb-10 leading-[0.9] tracking-tighter text-foreground">
+              <TextReveal text="Inside the" />
+              <TextReveal text="MIJ Narrative" className="text-primary" delay={0.5} />
+            </h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-2xl md:text-3xl text-muted-foreground leading-relaxed max-w-4xl mx-auto font-light font-body"
+            >
+              Unveiling our journey of transformation, global synergy, and the stories that define our impact across borders.
+            </motion.p>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Insight Section - High Impact */}
+      <section className="py-24 bg-background relative z-10 font-header">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-7xl mx-auto"
           >
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
-                Latest News
-              </Badge>
-              <div className="w-12 h-0.5 bg-gray-900" />
-            </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-              News & <span className="text-[#D4387F]">Updates</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-              Stay informed about our latest achievements, partnerships, and innovations in Japan-Bangladesh business collaboration.
-            </p>
+            <Card
+              onClick={() => navigate(`/news/${featuredArticle.id}`)}
+              className="group cursor-pointer relative overflow-hidden rounded-[80px] border-none shadow-2xl h-[700px] flex items-end"
+            >
+              <div className="absolute inset-0 z-0">
+                <ImageWithFallback
+                  src={featuredArticle.image}
+                  alt={featuredArticle.title}
+                  className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent" />
+              </div>
+
+              <div className="relative z-10 p-16 md:p-24 w-full">
+                <div className="flex flex-wrap items-center gap-6 mb-10">
+                  <Badge className="bg-primary text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-2xl shadow-primary/50">
+                    Featured Insight
+                  </Badge>
+                  <div className="flex items-center gap-3 text-white/70 font-bold uppercase tracking-widest text-sm">
+                    <Calendar className="w-5 h-5 text-primary" />
+                    {featuredArticle.date}
+                  </div>
+                </div>
+
+                <div className="max-w-5xl space-y-8">
+                  <h2 className="text-5xl md:text-7xl font-black text-white leading-tight tracking-tighter group-hover:text-primary transition-colors">
+                    {featuredArticle.title}
+                  </h2>
+                  <p className="text-2xl text-white/70 font-light font-body leading-relaxed max-w-3xl line-clamp-2">
+                    {featuredArticle.excerpt}
+                  </p>
+
+                  <div className="pt-8">
+                    <Magnetic>
+                      <Button
+                        size="lg"
+                        className="bg-white text-gray-950 hover:bg-primary hover:text-white px-12 py-10 text-xl rounded-2xl transition-all duration-700 font-black group/btn"
+                      >
+                        Read Full Narrative
+                        <ArrowRight className="w-6 h-6 ml-4 group-hover/btn:translate-x-4 transition-transform duration-500" />
+                      </Button>
+                    </Magnetic>
+                  </div>
+                </div>
+              </div>
+            </Card>
           </motion.div>
         </div>
       </section>
 
-      {/* Featured Article */}
-      {featuredArticle && (
-        <section className="py-16 md:py-24">
-          <div className="container mx-auto px-6 md:px-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto"
-            >
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                {/* Image */}
-                <div className="relative">
-                  <div 
-                    className="relative border-4 border-gray-900 rounded-2xl overflow-hidden p-2 bg-white"
-                    onTouchStart={() => setTouchedImage('featured-article')}
-                    onTouchEnd={() => setTimeout(() => setTouchedImage(null), 500)}
-                    style={{ WebkitTapHighlightColor: 'transparent' }}
-                  >
-                    <div className="relative overflow-hidden rounded-lg">
-                      <ImageWithFallback
-                        src={featuredArticle.image}
-                        alt={featuredArticle.title}
-                        className={`w-full h-[500px] object-cover transition-all duration-500 hover:grayscale-0 ${
-                          touchedImage === 'featured-article' ? 'grayscale-0' : 'grayscale'
-                        }`}
-                      />
-                    </div>
-                    {/* Pink accent */}
-                    <div className="absolute -top-3 -right-3 w-8 h-8 bg-[#D4387F] rounded-full" />
-                    <div className="absolute -bottom-3 -left-3 w-8 h-8 bg-[#D4387F] rounded-full" />
-                  </div>
-                  <Badge className="absolute top-6 left-6 bg-[#D4387F] text-white border-0 px-4 py-1.5">
-                    Featured
-                  </Badge>
-                </div>
-
-                {/* Content */}
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-[#D4387F]" />
-                      {featuredArticle.date}
-                    </div>
-                    <Badge variant="outline" className="border-[#D4387F] text-[#D4387F]">
-                      {featuredArticle.category}
-                    </Badge>
-                  </div>
-                  
-                  <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-                    {featuredArticle.title}
-                  </h2>
-                  
-                  <p className="text-xl text-gray-600 leading-relaxed">
-                    {featuredArticle.excerpt}
-                  </p>
-
-                  <Button 
-                    onTouchStart={() => setAnimatedImages(prev => ({ ...prev, 'read-featured': true }))}
-                    onTouchEnd={() => setTimeout(() => setAnimatedImages(prev => ({ ...prev, 'read-featured': false })), 300)}
-                    className={`text-white gap-3 px-8 py-6 transition-all ${
-                      animatedImages['read-featured'] ? 'bg-[#FF8FB8]' : 'bg-[#D4387F]'
-                    } hover:bg-[#FF8FB8]`}
-                    size="lg"
-                    style={{ WebkitTapHighlightColor: 'transparent' }}
-                  >
-                    Read Full Article
-                    <ArrowRight className="w-5 h-5" />
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      )}
-
-      {/* Category Filter */}
-      <section className="py-8 bg-gray-50 border-y-2 border-gray-200">
+      {/* Filter & Search Bar - Glassmorphism */}
+      <section className="sticky top-24 z-40 py-8 bg-background/50 backdrop-blur-2xl border-y border-border/50">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto">
-            {['All', 'Business', 'Technology', 'Partnership'].map((category) => (
-              <button
-                key={category}
-                onClick={() => {
-                  // Filter articles based on category
-                }}
-                className={
-                  category.toLowerCase() === 'all'
-                    ? 'bg-[#D4387F] hover:bg-[#D4387F] text-white border-0 px-6 py-2 rounded-full transition-all'
-                    : 'border-2 text-gray-900 transition-all px-6 py-2 rounded-full hover:border-[#D4387F] hover:text-[#D4387F]'
-                }
-              >
-                {category}
-              </button>
-            ))}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-12 max-w-7xl mx-auto">
+            <div className="flex flex-wrap items-center gap-3">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={`px-8 py-3 rounded-2xl text-sm font-black uppercase tracking-widest transition-all duration-500 ${activeCategory === category
+                      ? 'bg-primary text-white shadow-lg shadow-primary/20'
+                      : 'bg-muted/10 text-muted-foreground hover:bg-muted/30 hover:text-foreground border border-border/50'
+                    }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+
+            <div className="relative group w-full md:w-96">
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-muted-foreground group-focus-within:text-primary transition-colors" />
+              <input
+                type="text"
+                placeholder="Search narratives..."
+                className="w-full h-14 bg-muted/20 border-2 border-border/50 rounded-2xl pl-16 pr-6 text-foreground font-body focus:border-primary focus:ring-0 transition-all outline-none"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* News Grid */}
-      <section className="py-16 md:py-24">
+      {/* Narrative Grid - Staggered Cards */}
+      <section className="py-24 bg-background relative z-10 font-header">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
             {regularArticles.map((article, index) => (
               <motion.div
                 key={article.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                onViewportEnter={() => registerImage(`news-${article.id}`)}
-                onViewportLeave={() => unregisterImage(`news-${article.id}`)}
+                transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Card 
-                  className={`border-2 overflow-hidden transition-all group cursor-pointer h-full ${
-                    animatedImages[`news-${article.id}`] ? 'border-[#D4387F]' : 'border-gray-200'
-                  } hover:border-[#D4387F]`}
+                <Card
+                  onClick={() => navigate(`/news/${article.id}`)}
+                  className="group h-full bg-card/30 backdrop-blur-xl border-2 border-border rounded-[64px] overflow-hidden hover:border-primary/50 hover:shadow-2xl transition-all duration-1000 flex flex-col"
                 >
-                  <div 
-                    className="relative h-56 overflow-hidden bg-gray-100"
-                  >
+                  <div className="relative h-72 overflow-hidden bg-muted">
                     <ImageWithFallback
                       src={article.image}
                       alt={article.title}
-                      className={`w-full h-full object-cover transition-all duration-500 ${
-                        animatedImages[`news-${article.id}`] ? 'grayscale-0' : 'grayscale'
-                      } group-hover:grayscale-0`}
-                      onTouchStart={() => setAnimatedImages(prev => ({ ...prev, [`news-${article.id}`]: true }))}
-                      onTouchEnd={() => setTimeout(() => setAnimatedImages(prev => ({ ...prev, [`news-${article.id}`]: false })), 500)}
-                      style={{ WebkitTapHighlightColor: 'transparent' }}
+                      className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
                     />
-                    <div className="absolute top-3 right-3">
-                      <Badge variant="outline" className="bg-white/90 backdrop-blur border-gray-300 text-gray-700">
-                        {article.category}
-                      </Badge>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    <Badge className="absolute top-8 right-8 bg-background/80 backdrop-blur-3xl text-foreground border border-white/20 px-6 py-2 rounded-xl text-xs font-black uppercase tracking-[0.2em]">
+                      {article.category}
+                    </Badge>
                   </div>
-                  
-                  <CardContent className="p-6 space-y-4">
-                    <div className="flex items-center gap-2 text-sm text-gray-500">
-                      <Clock className="w-4 h-4 text-[#D4387F]" />
-                      {article.date}
+
+                  <CardContent className="p-12 space-y-8 flex-grow flex flex-col">
+                    <div className="flex items-center gap-4 text-xs font-black uppercase tracking-widest text-primary">
+                      <Clock className="w-5 h-5" />
+                      {article.date} • 5 min read
                     </div>
-                    
-                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-[#D4387F] transition-colors line-clamp-2">
+
+                    <h3 className="text-3xl font-black text-foreground group-hover:text-primary transition-colors leading-[1.2] tracking-tight line-clamp-2">
                       {article.title}
                     </h3>
-                    
-                    <p className="text-gray-600 line-clamp-3">
+
+                    <p className="text-xl text-muted-foreground font-light font-body leading-relaxed line-clamp-3">
                       {article.excerpt}
                     </p>
 
-                    <div className="pt-4">
-                      <Button 
-                        variant="ghost" 
-                        onTouchStart={() => setAnimatedImages(prev => ({ ...prev, [`read-more-${article.id}`]: true }))}
-                        onTouchEnd={() => setTimeout(() => setAnimatedImages(prev => ({ ...prev, [`read-more-${article.id}`]: false })), 300)}
-                        className={`p-0 h-auto gap-2 group/btn transition-all ${
-                          animatedImages[`read-more-${article.id}`]
-                            ? 'text-[#FF8FB8] bg-[#D4387F]/10'
-                            : 'text-[#D4387F]'
-                        } hover:text-[#D4387F] hover:bg-[#D4387F]/10`}
-                        style={{ WebkitTapHighlightColor: 'transparent' }}
-                      >
-                        Read More
-                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                      </Button>
+                    <div className="pt-6 mt-auto">
+                      <button className="flex items-center gap-4 text-primary font-black uppercase tracking-widest text-sm group/btn">
+                        Explore Narrative
+                        <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-3 transition-transform duration-500" />
+                      </button>
                     </div>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="mt-32 text-center"
+          >
+            <Magnetic>
+              <Button
+                variant="outline"
+                className="border-4 border-foreground hover:bg-foreground hover:text-background px-16 py-12 text-2xl rounded-3xl transition-all duration-700 font-black font-header group"
+              >
+                Load More Narratives
+              </Button>
+            </Magnetic>
+          </motion.div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-gray-50">
-        <div className="container mx-auto px-6 md:px-12">
+      {/* Newsletter Section - High Impact Glassmorphism */}
+      <section className="py-48 bg-muted/20 relative overflow-hidden font-header">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
+
+        <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-6xl mx-auto"
           >
-            <Card className="border-2 border-[#D4387F] bg-gradient-to-br from-[#D4387F]/5 to-[#D4387F]/10 max-w-4xl mx-auto">
-              <CardContent className="p-12 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                  Want to Stay <span className="text-[#D4387F]">Updated?</span>
-                </h2>
-                <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                  Subscribe to our newsletter for the latest news, updates, and insights from Axsh Tech.
-                </p>
-                <Button 
-                  onClick={() => {
-                    // Navigate to contact page
-                  }}
-                  onTouchStart={() => setAnimatedImages(prev => ({ ...prev, 'contact-us': true }))}
-                  onTouchEnd={() => setTimeout(() => setAnimatedImages(prev => ({ ...prev, 'contact-us': false })), 300)}
-                  className={`text-white gap-3 px-10 py-7 transition-all ${
-                    animatedImages['contact-us'] ? 'bg-[#FF8FB8]' : 'bg-[#D4387F]'
-                  } hover:bg-[#FF8FB8]`}
+            <Badge variant="outline" className="px-8 py-3 border-primary text-primary bg-primary/5 rounded-full mb-12 font-black uppercase tracking-[0.3em] text-sm">
+              Keep the Dialogue Alive
+            </Badge>
+            <h2 className="text-7xl md:text-9xl font-black text-foreground mb-12 tracking-tighter leading-[0.85]">
+              Stay <span className="text-primary">Informed</span>
+            </h2>
+            <p className="text-3xl md:text-4xl text-muted-foreground max-w-4xl mx-auto mb-20 font-light font-body leading-relaxed">
+              Subscribe to the MIJ Narrative and receive the latest insights on global business and innovation directly in your inbox.
+            </p>
+
+            <div className="flex flex-col md:flex-row gap-6 justify-center items-center max-w-4xl mx-auto">
+              <input
+                type="email"
+                placeholder="your@email.com"
+                className="w-full h-20 bg-background border-4 border-border/50 rounded-3xl px-10 text-2xl font-body outline-none focus:border-primary transition-all"
+              />
+              <Magnetic>
+                <Button
                   size="lg"
-                  style={{ WebkitTapHighlightColor: 'transparent' }}
+                  className="w-full md:w-auto bg-primary hover:bg-foreground hover:text-background text-white px-16 py-10 rounded-3xl h-20 text-2xl font-black transition-all duration-700 shadow-2xl shadow-primary/30"
                 >
-                  Contact Us
-                  <ArrowRight className="w-5 h-5" />
+                  Subscribe
                 </Button>
-              </CardContent>
-            </Card>
+              </Magnetic>
+            </div>
           </motion.div>
         </div>
       </section>

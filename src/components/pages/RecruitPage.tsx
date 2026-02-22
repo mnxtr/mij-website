@@ -1,52 +1,31 @@
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { 
-  Briefcase, 
-  Users, 
-  Globe2, 
-  TrendingUp, 
-  Heart, 
+import {
+  Briefcase,
+  Users,
+  Globe2,
+  TrendingUp,
+  Heart,
   Award,
   ArrowRight,
   MapPin,
   Clock,
-  DollarSign
+  Sparkles
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../translations';
 import teamImage from 'figma:asset/0fcc3f28daffd4c8a9dc7ec084222c8c4169541a.png';
+import TextReveal from '../animations/TextReveal';
+import Magnetic from '../animations/Magnetic';
 
 export default function RecruitPage() {
   const { language } = useLanguage();
   const t = getTranslation(language);
-  
-  const [touchedButton, setTouchedButton] = useState<string | null>(null);
-  const [touchedImage, setTouchedImage] = useState<string | null>(null);
-  const [teamImageColorActive, setTeamImageColorActive] = useState(false);
-  
-  // Auto-animate team image - cycles every 6 seconds for 2 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTeamImageColorActive(true);
-      setTimeout(() => setTeamImageColorActive(false), 2000);
-    }, 6000);
 
-    // Initial animation
-    const initialTimeout = setTimeout(() => {
-      setTeamImageColorActive(true);
-      setTimeout(() => setTeamImageColorActive(false), 2000);
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(initialTimeout);
-    };
-  }, []);
-  
   const benefits = [
     {
       icon: Globe2,
@@ -94,7 +73,7 @@ export default function RecruitPage() {
     },
   ];
 
-  const process = [
+  const processSteps = [
     {
       step: '01',
       title: t.recruit.process.application.title,
@@ -118,75 +97,92 @@ export default function RecruitPage() {
   ];
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-background transition-colors duration-500 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="py-24 md:py-32 bg-gray-50">
-        <div className="container mx-auto px-6 md:px-12">
+      <section className="relative py-32 md:py-48 bg-background overflow-hidden font-header">
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
+            animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.15, 0.1] }}
+            transition={{ duration: 10, repeat: Infinity }}
+            className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px]"
+          />
+        </div>
+
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="max-w-5xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center justify-center gap-6 mb-12"
+            >
+              <div className="w-16 h-px bg-primary/20" />
+              <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5 px-6 py-2 text-sm tracking-[0.3em] uppercase rounded-full font-bold">
                 {t.recruit.badge}
               </Badge>
-              <div className="w-12 h-0.5 bg-gray-900" />
-            </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-              {t.recruit.hero.title} <span className="text-[#D4387F]">{t.recruit.hero.highlight}</span>
+              <div className="w-16 h-px bg-primary/20" />
+            </motion.div>
+
+            <h1 className="text-7xl md:text-9xl font-black mb-10 leading-[0.9] tracking-tighter text-foreground">
+              <TextReveal text={t.recruit.hero.title} />
+              <TextReveal text={t.recruit.hero.highlight} className="text-primary" delay={0.5} />
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-2xl md:text-3xl text-muted-foreground leading-relaxed max-w-4xl mx-auto font-light font-body"
+            >
               {t.recruit.hero.description}
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
         </div>
       </section>
 
-      {/* Why Join Us */}
-      <section className="py-24 md:py-32 bg-white">
+      {/* Why Join Us - Premium Grid */}
+      <section className="py-32 bg-background relative z-10 font-header">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-4xl mx-auto mb-24"
           >
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
+            <div className="flex items-center justify-center gap-6 mb-8">
+              <div className="w-16 h-px bg-border" />
+              <Badge variant="outline" className="border-border text-muted-foreground text-xs tracking-[0.2em] uppercase px-4 py-1">
                 {t.recruit.why.badge}
               </Badge>
-              <div className="w-12 h-0.5 bg-gray-900" />
+              <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+            <h2 className="text-5xl md:text-7xl font-black mb-8 text-foreground tracking-tighter">
               {t.recruit.why.title}
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="h-full"
               >
-                <Card className="border-2 border-gray-200 bg-white hover:border-[#D4387F] hover:shadow-lg transition-all h-full group">
-                  <CardContent className="p-8 space-y-4 text-center">
-                    <div className="w-16 h-16 border-2 border-gray-900 rounded-xl flex items-center justify-center mx-auto group-hover:bg-[#D4387F] group-hover:border-[#D4387F] transition-all">
-                      <benefit.icon className="w-8 h-8 text-gray-900 group-hover:text-white transition-colors" />
+                <Card className="h-full border-2 border-border bg-card/30 backdrop-blur-xl p-10 rounded-[56px] text-center flex flex-col items-center group hover:border-primary/50 hover:shadow-2xl transition-all duration-700">
+                  <Magnetic>
+                    <div className="w-24 h-24 border-2 border-border bg-background rounded-[32px] flex items-center justify-center mb-10 transition-all duration-700 group-hover:bg-primary group-hover:border-primary group-hover:rotate-12 group-hover:shadow-xl group-hover:shadow-primary/30">
+                      <benefit.icon className="w-10 h-10 text-foreground group-hover:text-white transition-colors duration-500" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-[#D4387F] transition-colors">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {benefit.description}
-                    </p>
-                  </CardContent>
+                  </Magnetic>
+                  <h3 className="text-2xl font-black mb-4 text-foreground group-hover:text-primary transition-colors tracking-tight">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-lg text-muted-foreground leading-relaxed font-light font-body">
+                    {benefit.description}
+                  </p>
                 </Card>
               </motion.div>
             ))}
@@ -194,127 +190,132 @@ export default function RecruitPage() {
         </div>
       </section>
 
-      {/* Team Culture */}
-      <section className="py-24 md:py-32 bg-gray-50">
-        <div className="container mx-auto px-6 md:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-12"
-          >
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
-                {t.recruit.culture.badge}
-              </Badge>
-              <div className="w-12 h-0.5 bg-gray-900" />
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-              {t.recruit.culture.title}
-            </h2>
-            <p className="text-xl text-gray-600">
-              {t.recruit.culture.description}
-            </p>
-          </motion.div>
+      {/* Team Culture - Immersive Section */}
+      <section className="py-40 bg-muted/20 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/[0.02] -skew-x-12 translate-x-1/4 pointer-events-none" />
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-5xl mx-auto"
-          >
-            <div 
-              className="relative border-4 border-gray-900 rounded-2xl overflow-hidden p-2 bg-white"
-              onTouchStart={() => setTouchedImage('team-collaboration')}
-              onTouchEnd={() => setTimeout(() => setTouchedImage(null), 500)}
-              style={{ WebkitTapHighlightColor: 'transparent' }}
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-20 items-center max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-12"
             >
-              <div className="relative overflow-hidden rounded-lg">
+              <div className="space-y-6">
+                <Badge variant="outline" className="px-6 py-2 border-primary/20 text-primary bg-primary/5 rounded-full uppercase tracking-[0.3em] font-black text-xs font-header">
+                  {t.recruit.culture.badge}
+                </Badge>
+                <h2 className="text-6xl md:text-8xl font-black text-foreground tracking-tighter leading-[0.9] font-header">
+                  {t.recruit.culture.title}
+                </h2>
+              </div>
+              <p className="text-2xl text-muted-foreground font-light leading-relaxed font-body">
+                {t.recruit.culture.description}
+              </p>
+
+              <div className="flex flex-wrap gap-6 pt-6">
+                {['Innovation', 'Collaboration', 'Integrity', 'Impact'].map((value, idx) => (
+                  <div key={idx} className="px-6 py-3 bg-card border border-border rounded-2xl flex items-center gap-3">
+                    <Sparkles className="w-5 h-5 text-primary" />
+                    <span className="text-lg font-bold text-foreground font-header">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative"
+            >
+              <div className="relative z-10 rounded-[64px] overflow-hidden border-8 border-card shadow-2xl group">
                 <ImageWithFallback
                   src={teamImage}
                   alt="Team Collaboration"
-                  className={`w-full h-[500px] object-cover transition-all duration-500 hover:grayscale-0 ${
-                    teamImageColorActive || touchedImage === 'team-collaboration' ? 'grayscale-0' : 'grayscale'
-                  }`}
+                  className="w-full h-[600px] object-cover transition-transform duration-[3s] group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
               </div>
-              <div className="absolute -top-3 -right-3 w-8 h-8 bg-[#D4387F] rounded-full" />
-              <div className="absolute -bottom-3 -left-3 w-8 h-8 bg-[#D4387F] rounded-full" />
-            </div>
-          </motion.div>
+              <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+              <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse delay-1000" />
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Open Positions */}
-      <section className="py-24 md:py-32 bg-white">
+      {/* Open Positions - Premium List */}
+      <section className="py-32 bg-background relative z-10 font-header">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-4xl mx-auto mb-24"
           >
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
+            <div className="flex items-center justify-center gap-6 mb-8">
+              <div className="w-16 h-px bg-border" />
+              <Badge variant="outline" className="border-border text-muted-foreground text-xs tracking-[0.2em] uppercase px-4 py-1">
                 {t.recruit.positions.badge}
               </Badge>
-              <div className="w-12 h-0.5 bg-gray-900" />
+              <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+            <h2 className="text-5xl md:text-7xl font-black mb-8 text-foreground tracking-tighter">
               {t.recruit.positions.title}
             </h2>
           </motion.div>
 
-          <div className="grid gap-6 max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto space-y-12">
             {openPositions.map((position, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.8, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Card className="border-2 border-gray-200 bg-white hover:border-[#D4387F] hover:shadow-lg transition-all group">
-                  <CardContent className="p-8">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-[#D4387F] transition-colors">
-                          {position.title}
-                        </h3>
-                        <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600">
-                          <div className="flex items-center gap-1">
-                            <Briefcase className="w-4 h-4 text-[#D4387F]" />
-                            <span>{position.department}</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <MapPin className="w-4 h-4 text-[#D4387F]" />
-                            <span>{position.location}</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Clock className="w-4 h-4 text-[#D4387F]" />
-                            <span>{position.type}</span>
-                          </div>
+                <Card className="border-2 border-border bg-card/30 backdrop-blur-xl p-12 rounded-[48px] overflow-hidden group hover:border-primary/50 hover:shadow-2xl transition-all duration-700 relative">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-1000" />
+
+                  <div className="flex flex-col lg:row lg:items-center justify-between gap-12 relative z-10">
+                    <div className="space-y-6 flex-grow">
+                      <h3 className="text-3xl md:text-4xl font-black text-foreground group-hover:text-primary transition-colors tracking-tight">
+                        {position.title}
+                      </h3>
+                      <div className="flex flex-wrap gap-8">
+                        <div className="flex items-center gap-3 text-muted-foreground group/item">
+                          <Briefcase className="w-5 h-5 text-primary group-hover/item:scale-125 transition-transform" />
+                          <span className="text-lg font-bold font-header uppercase tracking-wider">{position.department}</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-muted-foreground group/item">
+                          <MapPin className="w-5 h-5 text-primary group-hover/item:scale-125 transition-transform" />
+                          <span className="text-lg font-bold font-header uppercase tracking-wider">{position.location}</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-muted-foreground group/item">
+                          <Clock className="w-5 h-5 text-primary group-hover/item:scale-125 transition-transform" />
+                          <span className="text-lg font-bold font-header uppercase tracking-wider">{position.type}</span>
                         </div>
                       </div>
-                      <Button 
-                        onTouchStart={() => setTouchedButton(`apply-${index}`)}
-                        onTouchEnd={() => setTimeout(() => setTouchedButton(null), 300)}
-                        className={`gap-2 whitespace-nowrap transition-all ${
-                          touchedButton === `apply-${index}` ? 'bg-[#FF8FB8]' : 'bg-[#D4387F]'
-                        } hover:bg-[#FF8FB8] text-white`}
-                        style={{ WebkitTapHighlightColor: 'transparent' }}
-                      >
-                        {t.recruit.apply}
-                        <ArrowRight className="w-4 h-4" />
-                      </Button>
+                      <p className="text-xl text-muted-foreground font-light font-body leading-relaxed max-w-3xl">
+                        {position.description}
+                      </p>
                     </div>
-                    <p className="text-gray-600 leading-relaxed">
-                      {position.description}
-                    </p>
-                  </CardContent>
+
+                    <div className="flex-shrink-0">
+                      <Magnetic>
+                        <Button
+                          size="lg"
+                          className="bg-primary hover:bg-foreground hover:text-background text-white gap-4 px-12 py-10 text-xl rounded-2xl shadow-xl shadow-primary/20 group font-bold font-header transition-all duration-700"
+                        >
+                          {t.recruit.apply}
+                          <ArrowRight className="w-6 h-6 group-hover:translate-x-3 transition-transform duration-500" />
+                        </Button>
+                      </Magnetic>
+                    </div>
+                  </div>
                 </Card>
               </motion.div>
             ))}
@@ -322,48 +323,52 @@ export default function RecruitPage() {
         </div>
       </section>
 
-      {/* Hiring Process */}
-      <section className="py-24 md:py-32 bg-gray-50">
+      {/* Hiring Process - Staggered Steps */}
+      <section className="py-40 bg-muted/20 relative overflow-hidden font-header">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-4xl mx-auto mb-32"
           >
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
+            <div className="flex items-center justify-center gap-6 mb-8">
+              <div className="w-16 h-px bg-border" />
+              <Badge variant="outline" className="border-border text-muted-foreground text-xs tracking-[0.2em] uppercase px-4 py-1">
                 {t.recruit.process.badge}
               </Badge>
-              <div className="w-12 h-0.5 bg-gray-900" />
+              <div className="w-16 h-px bg-border" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+            <h2 className="text-5xl md:text-7xl font-black mb-8 text-foreground tracking-tighter">
               {t.recruit.process.title}
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {process.map((step, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto relative">
+            {/* Connection Line (Desktop) */}
+            <div className="hidden lg:block absolute top-[60px] left-[10%] right-[10%] h-1 bg-border/50 z-0" />
+
+            {processSteps.map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.8, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="relative z-10"
               >
-                <Card className="border-2 border-gray-200 bg-white hover:border-[#D4387F] hover:shadow-lg transition-all h-full group">
-                  <CardContent className="p-8 space-y-4 text-center">
-                    <div className="text-6xl font-bold text-[#D4387F]/20 group-hover:text-[#D4387F]/30 transition-colors">
+                <Card className="h-full border-2 border-border bg-card group p-12 rounded-[56px] text-center flex flex-col items-center hover:border-primary/50 hover:shadow-2xl transition-all duration-700">
+                  <div className="w-24 h-24 bg-background border-4 border-border rounded-full flex items-center justify-center mb-10 group-hover:bg-primary group-hover:border-primary group-hover:rotate-[360deg] transition-all duration-1000 shadow-xl group-hover:shadow-primary/40">
+                    <span className="text-3xl font-black text-foreground group-hover:text-white transition-colors duration-500">
                       {step.step}
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-[#D4387F] transition-colors">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </CardContent>
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-black mb-6 text-foreground group-hover:text-primary transition-colors tracking-tight uppercase tracking-widest">
+                    {step.title}
+                  </h3>
+                  <p className="text-lg text-muted-foreground leading-relaxed font-light font-body">
+                    {step.description}
+                  </p>
                 </Card>
               </motion.div>
             ))}
@@ -371,33 +376,41 @@ export default function RecruitPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 md:py-32 bg-white">
-        <div className="container mx-auto px-6 md:px-12">
+      {/* CTA Section - High Impact */}
+      <section className="relative py-48 bg-background overflow-hidden font-header">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.05)_0%,transparent_70%)] pointer-events-none" />
+
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center bg-gradient-to-br from-[#D4387F]/5 to-[#D4387F]/10 rounded-3xl p-12 md:p-16 border-2 border-[#D4387F]/20"
+            className="max-w-6xl mx-auto text-center"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-              {t.recruit.cta.title} <span className="text-[#D4387F]">{t.recruit.cta.highlight}</span>
-            </h2>
-            <p className="text-xl text-gray-600 mb-8">
-              {t.recruit.cta.description}
-            </p>
-            <Button 
-              size="lg" 
-              onTouchStart={() => setTouchedButton('cta-apply')}
-              onTouchEnd={() => setTimeout(() => setTouchedButton(null), 300)}
-              className={`gap-3 py-7 px-10 transition-all ${
-                touchedButton === 'cta-apply' ? 'bg-[#FF8FB8]' : 'bg-[#D4387F]'
-              } hover:bg-[#FF8FB8] text-white`}
-              style={{ WebkitTapHighlightColor: 'transparent' }}
-            >
-              {t.recruit.apply}
-              <ArrowRight className="w-5 h-5" />
-            </Button>
+            <Card className="bg-foreground text-background p-20 md:p-32 rounded-[80px] border-none shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -mr-32 -mt-32 group-hover:scale-150 transition-transform duration-[2s]" />
+
+              <div className="relative z-10 space-y-12">
+                <h2 className="text-7xl md:text-9xl font-black tracking-tighter leading-[0.85]">
+                  {t.recruit.cta.title} <span className="text-primary">{t.recruit.cta.highlight}</span>
+                </h2>
+                <p className="text-3xl md:text-4xl text-background/70 font-light max-w-4xl mx-auto leading-relaxed font-body">
+                  {t.recruit.cta.description}
+                </p>
+
+                <div className="pt-10">
+                  <Magnetic>
+                    <Button
+                      size="lg"
+                      className="bg-primary hover:bg-white hover:text-primary text-white gap-6 px-20 py-14 text-3xl rounded-[40px] shadow-2xl shadow-primary/50 group/btn font-black transition-all duration-700"
+                    >
+                      {t.recruit.apply}
+                      <ArrowRight className="w-10 h-10 group-hover/btn:translate-x-6 transition-transform duration-700" />
+                    </Button>
+                  </Magnetic>
+                </div>
+              </div>
+            </Card>
           </motion.div>
         </div>
       </section>
