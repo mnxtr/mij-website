@@ -2,10 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../translations';
 import { motion } from 'motion/react';
-import { Shield, Eye, Lock, Database, UserCheck, Mail, Sparkles, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Eye, Lock, Database, UserCheck, Mail, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { Card, CardContent } from '../ui/card';
+import { Card } from '../ui/card';
 import Magnetic from '../animations/Magnetic';
 
 export default function PrivacyPolicyPage() {

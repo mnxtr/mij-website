@@ -23,7 +23,7 @@ export const recruitmentSchema = z.object({
     .max(100, { message: 'Current position must not exceed 100 characters' }),
   
   yearsOfExperience: z
-    .number({ required_error: 'Years of experience is required' })
+    .number({ message: 'Years of experience is required' })
     .min(0, { message: 'Years of experience cannot be negative' })
     .max(50, { message: 'Please enter a valid number of years' }),
   

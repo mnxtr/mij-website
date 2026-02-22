@@ -2,9 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../translations';
-import { Home, Search, Mail, Briefcase, Info, Sparkles, ArrowRight, Compass } from 'lucide-react';
+import { Home, Search, Mail, Briefcase, Info, ArrowRight, Compass } from 'lucide-react';
+import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { Card, CardContent } from '../ui/card';
+import { Card } from '../ui/card';
 import Magnetic from '../animations/Magnetic';
 
 export default function NotFoundPage() {

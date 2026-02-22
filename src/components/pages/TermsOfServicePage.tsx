@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { FileText, Scale, AlertCircle, UserCheck, Shield, Gavel, Sparkles, ArrowRight, ArrowLeft, Calendar } from 'lucide-react';
+import { FileText, Scale, AlertCircle, UserCheck, Shield, Gavel, ArrowRight, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../translations';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { Card, CardContent } from '../ui/card';
+import { Card } from '../ui/card';
 import Magnetic from '../animations/Magnetic';
 
 export default function TermsOfServicePage() {

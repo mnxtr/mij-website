@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode, useEffect } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
 import { useUIStore, Language } from '../stores/uiStore';
 
 interface LanguageContextType {

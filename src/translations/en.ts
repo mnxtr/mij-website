@@ -28,10 +28,16 @@ export const en = {
     viewAll: 'View All',
     submit: 'Submit',
     sending: 'Sending...',
+    loading: 'Loading...',
+    back: 'Back',
+    share: 'Share',
+    comingSoon: 'Coming Soon',
+    success: 'Thank you! We will get back to you soon.',
   },
 
   // Home Page
   home: {
+    tagline: 'Cross Border, Connect Dreams',
     hero: {
       tagline1: 'Cross',
       tagline2: 'Border,',
@@ -556,10 +562,12 @@ export const en = {
   // News Page
   news: {
     badge: 'Latest News',
+    relatedArticles: 'Related Articles',
     hero: {
       title: 'News &',
       highlight: 'Updates',
       description: 'Stay informed about our latest achievements, partnerships, and innovations in Japan-Bangladesh business collaboration.',
+      relatedArticles: 'Related Articles',
     },
     featured: {
       badge: 'Featured',
@@ -746,7 +754,12 @@ export const en = {
       },
     },
     social: {
-      title: 'Follow Us',
+      badge: 'Connect With Us',
+      title: 'Follow Our',
+      highlight: 'Journey',
+      description: 'Stay updated with our latest news, insights, and success stories across Japan and Bangladesh',
+      follow: 'Follow Us',
+      connect: 'Connect',
     },
     offices: {
       badge: 'Our Offices',

@@ -5,7 +5,8 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../translations';
 import { Search, X, Clock, TrendingUp, FileText, Briefcase, Newspaper, Info, Sparkles, ArrowRight } from 'lucide-react';
 import { Badge } from '../ui/badge';
-import { Card, CardContent } from '../ui/card';
+import { Card } from '../ui/card';
+import { Button } from '../ui/button';
 import Magnetic from '../animations/Magnetic';
 
 interface SearchResult {
@@ -255,8 +256,8 @@ export default function SearchPage() {
                     key={filter.key}
                     onClick={() => setActiveFilter(filter.key)}
                     className={`px-10 py-4 rounded-2xl text-sm font-black uppercase tracking-widest transition-all duration-700 ${activeFilter === filter.key
-                        ? 'bg-primary text-white shadow-xl shadow-primary/30'
-                        : 'bg-background/40 text-muted-foreground hover:bg-primary/10 hover:text-primary border-2 border-border/50'
+                      ? 'bg-primary text-white shadow-xl shadow-primary/30'
+                      : 'bg-background/40 text-muted-foreground hover:bg-primary/10 hover:text-primary border-2 border-border/50'
                       }`}
                   >
                     {filter.label}

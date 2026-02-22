@@ -28,10 +28,16 @@ export const ja = {
     viewAll: 'すべて見る',
     submit: '送信',
     sending: '送信中...',
+    loading: '読み込み中...',
+    back: '戻る',
+    share: '共有',
+    comingSoon: '近日公開',
+    success: 'ありがとうございます！まもなくご連絡いたします。',
   },
 
   // Home Page
   home: {
+    tagline: '国境を越えて、夢をつなぐ',
     hero: {
       tagline1: '国境を越えて',
       tagline2: '夢を',
@@ -557,10 +563,12 @@ export const ja = {
   // News Page
   news: {
     badge: '最新ニュース',
+    relatedArticles: '関連記事',
     hero: {
       title: 'ニュース＆',
       highlight: 'アップデート',
       description: '日本バングラデシュのビジネスコラボレーションにおける最新の成果、パートナーシップ、イノベーションについて情報を入手してください。',
+      relatedArticles: '関連記事',
     },
     featured: {
       badge: '注目',
@@ -747,7 +755,12 @@ export const ja = {
       },
     },
     social: {
-      title: 'フォローしてください',
+      badge: 'つながる',
+      title: 'フォロー',
+      highlight: 'しましょう',
+      description: '日本とバングラデシュの最新ニュース、インサイト、成功事例を入手しましょう',
+      follow: 'フォロー',
+      connect: 'つながる',
     },
     offices: {
       badge: '私たちのオフィス',

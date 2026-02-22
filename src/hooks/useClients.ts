@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { apiClient } from '../api/client';
-import { API_ENDPOINTS } from '../api/endpoints';
+// import { apiClient } from '../api/client';
+// import { API_ENDPOINTS } from '../api/endpoints';
 import type { Client } from '../types/api';
 
 // Mock data for development

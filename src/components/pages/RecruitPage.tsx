@@ -1,9 +1,8 @@
-import { Card, CardContent } from '../ui/card';
+import { Card } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import {
   Briefcase,
-  Users,
   Globe2,
   TrendingUp,
   Heart,
@@ -15,7 +14,6 @@ import {
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
-import { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../translations';
 import teamImage from 'figma:asset/0fcc3f28daffd4c8a9dc7ec084222c8c4169541a.png';

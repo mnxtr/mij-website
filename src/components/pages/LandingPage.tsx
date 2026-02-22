@@ -32,7 +32,7 @@ import { getTranslation } from '../../translations';
 export default function LandingPage() {
   const navigate = useNavigate();
   const { language } = useLanguage();
-  const _translations = getTranslation(language);
+  // const t = getTranslation(language); // Available for future use
   
   const [email, setEmail] = useState('');
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
@@ -430,7 +430,7 @@ export default function LandingPage() {
               >
                 <Quote className="w-12 h-12 text-pink-400 mb-6" />
                 <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-                  "{testimonials[activeTestimonial].content}"
+                  "{testimonials[activeTestimonial]?.content}"
                 </p>
                 <div className="flex items-center gap-4">
                   <img

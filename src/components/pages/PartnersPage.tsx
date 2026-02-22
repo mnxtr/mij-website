@@ -1,10 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { Card, CardContent } from '../ui/card';
+import { Card } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
-import { Building2, Handshake, Globe2, ArrowRight, Calendar, Sparkles } from 'lucide-react';
+import { Building2, Handshake, Globe2, ArrowRight, Calendar } from 'lucide-react';
 import { motion } from 'motion/react';
-import { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../translations';
 import TextReveal from '../animations/TextReveal';
