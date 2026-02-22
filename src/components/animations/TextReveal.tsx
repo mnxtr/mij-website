@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import type { Variants } from 'motion/react';
 
 
 interface TextRevealProps {
@@ -10,7 +11,7 @@ interface TextRevealProps {
 export default function TextReveal({ text, className, delay = 0 }: TextRevealProps) {
     const words = text.split(' ');
 
-    const container = {
+    const container: Variants = {
         hidden: { opacity: 0 },
         visible: (i = 1) => ({
             opacity: 1,
@@ -18,13 +19,13 @@ export default function TextReveal({ text, className, delay = 0 }: TextRevealPro
         }),
     };
 
-    const child = {
+    const child: Variants = {
         visible: {
             opacity: 1,
             y: 0,
             rotateX: 0,
             transition: {
-                type: 'spring',
+                type: 'spring' as const,
                 damping: 12,
                 stiffness: 100,
             },

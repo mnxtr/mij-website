@@ -26,3 +26,5 @@ export function useLanguage() {
   }
   return context;
 }
+
+export type { Language };

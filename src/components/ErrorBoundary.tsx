@@ -27,11 +27,11 @@ class ErrorBoundaryClass extends React.Component<
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+  override componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('Error caught by ErrorBoundary:', error, errorInfo);
   }
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       return <ErrorDisplay error={this.state.error} />;
     }
@@ -148,7 +148,7 @@ function ErrorDisplay({ error }: { error: Error | null }) {
         </motion.div>
 
         {/* Error Details (Development only) */}
-        {process.env.NODE_ENV === 'development' && error && (
+        {process.env['NODE_ENV'] === 'development' && error && (
           <motion.div
             className="mt-8 pt-6 border-t border-slate-300 dark:border-slate-600"
             initial={{ opacity: 0 }}

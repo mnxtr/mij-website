@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowLeft, Calendar, User, Share2, Facebook, Twitter, Linkedin, Sparkles, Clock, Globe } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Share2, Facebook, Twitter, Linkedin, Sparkles, Clock, Globe, TrendingUp } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { Card, CardContent } from '../ui/card';

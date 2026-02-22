@@ -251,7 +251,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-3xl font-black mb-8 text-foreground tracking-tight">{country.title}</h3>
                 <ul className="space-y-5">
-                  {country.items.map((item, i) => (
+                  {country.items.map((item: string, i: number) => (
                     <li key={i} className="flex items-start gap-4 group/item">
                       <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1 transition-colors group-hover/item:bg-primary">
                         <Award className="w-3.5 h-3.5 text-primary group-hover/item:text-white transition-colors" />

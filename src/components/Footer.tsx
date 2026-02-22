@@ -3,7 +3,6 @@ import { Mail, Phone, MapPin, Globe, ArrowRight, Github, Linkedin, Twitter, Spar
 import { useLanguage } from '../contexts/LanguageContext';
 import { getTranslation } from '../translations';
 import logo from 'figma:asset/0621cc2c5bacc13d7baf5bc7b518107640d33480.png';
-import { motion } from 'motion/react';
 import Magnetic from './animations/Magnetic';
 
 export function Footer() {

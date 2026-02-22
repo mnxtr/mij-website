@@ -8,7 +8,6 @@ import { Input } from '../ui/input';
 import {
   ArrowRight,
   Play,
-  Pause,
   CheckCircle2,
   Star,
   Package,
@@ -16,14 +15,10 @@ import {
   Code,
   TrendingUp,
   Globe2,
-  Shield,
-  Zap,
   ChevronDown,
   ChevronUp,
   Quote,
   Sparkles,
-  Building2,
-  Award,
   Clock,
   Mail,
   Phone,
@@ -31,17 +26,15 @@ import {
   ArrowUpRight,
   MousePointer2
 } from 'lucide-react';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../translations';
 
 export default function LandingPage() {
   const navigate = useNavigate();
   const { language } = useLanguage();
-  const t = getTranslation(language);
+  const _translations = getTranslation(language);
   
   const [email, setEmail] = useState('');
-  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -441,20 +434,20 @@ export default function LandingPage() {
                 </p>
                 <div className="flex items-center gap-4">
                   <img
-                    src={testimonials[activeTestimonial].avatar}
-                    alt={testimonials[activeTestimonial].name}
+                    src={testimonials[activeTestimonial]?.avatar}
+                    alt={testimonials[activeTestimonial]?.name}
                     className="w-14 h-14 rounded-full object-cover border-2 border-pink-400"
                   />
                   <div>
                     <div className="font-bold text-white">
-                      {testimonials[activeTestimonial].name}
+                      {testimonials[activeTestimonial]?.name}
                     </div>
                     <div className="text-gray-400 text-sm">
-                      {testimonials[activeTestimonial].role}
+                      {testimonials[activeTestimonial]?.role}
                     </div>
                   </div>
                   <div className="ml-auto flex gap-1">
-                    {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
+                    {[...Array(testimonials[activeTestimonial]?.rating || 0)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                     ))}
                   </div>

@@ -1,4 +1,4 @@
-import { Card, CardContent } from '../ui/card';
+import { Card } from '../ui/card';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
@@ -37,8 +37,6 @@ export default function ContactPage() {
   const { language } = useLanguage();
   const t = getTranslation(language);
   const contactMutation = useContactForm();
-
-  const [touchedCard, setTouchedCard] = useState<string | null>(null);
 
   const {
     register,

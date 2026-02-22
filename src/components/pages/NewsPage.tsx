@@ -1,7 +1,7 @@
 import { Card, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
-import { Calendar, Clock, ArrowRight, Newspaper, Sparkles, TrendingUp, Search } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Search } from 'lucide-react';
 import { motion } from 'motion/react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { useState } from 'react';

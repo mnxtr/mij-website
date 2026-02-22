@@ -220,7 +220,7 @@ export default function ClientsPage() {
             }}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
           >
-            {clientCategories.map((category, index) => (
+            {clientCategories.map((category) => (
               <motion.div
                 key={category.id}
                 variants={{

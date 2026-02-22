@@ -33,7 +33,6 @@ export default function BusinessPage() {
   const { language } = useLanguage();
   const t = getTranslation(language);
 
-  const [touchedButton, setTouchedButton] = useState<string | null>(null);
   const [animatedImages, setAnimatedImages] = useState<{ [key: string]: boolean }>({});
   const [registeredImages, setRegisteredImages] = useState<string[]>([]);
   const [touchedCard, setTouchedCard] = useState<string | null>(null);
