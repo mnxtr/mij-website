@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { lazy } from 'react';
 import RootLayout from '../layouts/RootLayout';
+import { ErrorDisplay } from '../components/ErrorBoundary';
 
 // Lazy load page components for code splitting
 const HomePage = lazy(() => import('../components/pages/HomePage'));
@@ -23,62 +24,77 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <ErrorDisplay error={null} />,
     children: [
       {
         index: true,
         element: <HomePage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: 'landing',
         element: <LandingPage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: 'about',
         element: <AboutPage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: 'business',
         element: <BusinessPage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: 'news',
         element: <NewsPage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: 'news/:id',
         element: <NewsDetailPage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: 'search',
         element: <SearchPage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: 'services',
         element: <ServicesPage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: 'clients',
         element: <ClientsPage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: 'partners',
         element: <PartnersPage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: 'recruit',
         element: <RecruitPage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: 'contact',
         element: <ContactPage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: 'privacy-policy',
         element: <PrivacyPolicyPage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: 'terms-of-service',
         element: <TermsOfServicePage />,
+        errorElement: <ErrorDisplay error={null} />,
       },
       {
         path: '*',
