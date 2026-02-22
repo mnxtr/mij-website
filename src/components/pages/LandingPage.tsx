@@ -26,13 +26,8 @@ import {
   ArrowUpRight,
   MousePointer2
 } from 'lucide-react';
-import { useLanguage } from '../../contexts/LanguageContext';
-import { getTranslation } from '../../translations';
-
 export default function LandingPage() {
   const navigate = useNavigate();
-  const { language } = useLanguage();
-  // const t = getTranslation(language); // Available for future use
   
   const [email, setEmail] = useState('');
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);

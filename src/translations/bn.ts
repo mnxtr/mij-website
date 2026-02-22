@@ -134,6 +134,8 @@ export const bn = {
       linkedin: 'LinkedIn',
       twitter: 'Twitter',
       instagram: 'Instagram',
+      follow: 'আমাদের ফলো করুন',
+      connect: 'সংযুক্ত হন',
     },
     offices: {
       badge: 'আমাদের অফিস',
@@ -622,7 +624,6 @@ export const bn = {
       title: 'সংবাদ এবং',
       highlight: 'আপডেট',
       description: 'জাপান-বাংলাদেশ ব্যবসায়িক সহযোগিতায় আমাদের সর্বশেষ অর্জন, অংশীদারিত্ব এবং উদ্ভাবন সম্পর্কে অবগত থাকুন।',
-      relatedArticles: 'সম্পর্কিত নিবন্ধ',
     },
     featured: {
       badge: 'বৈশিষ্ট্যযুক্ত',

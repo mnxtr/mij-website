@@ -32,7 +32,7 @@ export const en = {
     back: 'Back',
     share: 'Share',
     comingSoon: 'Coming Soon',
-    success: 'Thank you! We will get back to you soon.',
+    success: 'Thank you! We will contact you soon.',
   },
 
   // Home Page
@@ -562,12 +562,10 @@ export const en = {
   // News Page
   news: {
     badge: 'Latest News',
-    relatedArticles: 'Related Articles',
     hero: {
       title: 'News &',
       highlight: 'Updates',
       description: 'Stay informed about our latest achievements, partnerships, and innovations in Japan-Bangladesh business collaboration.',
-      relatedArticles: 'Related Articles',
     },
     featured: {
       badge: 'Featured',
@@ -622,6 +620,7 @@ export const en = {
       description: 'Subscribe to our newsletter for the latest news, updates, and insights from Axsh Tech.',
     },
     readArticle: 'Read Full Article',
+    relatedArticles: 'Related Articles',
   },
 
   // Recruit Page
@@ -755,8 +754,8 @@ export const en = {
     },
     social: {
       badge: 'Connect With Us',
-      title: 'Follow Our',
-      highlight: 'Journey',
+      title: 'Follow',
+      highlight: 'Us',
       description: 'Stay updated with our latest news, insights, and success stories across Japan and Bangladesh',
       follow: 'Follow Us',
       connect: 'Connect',
