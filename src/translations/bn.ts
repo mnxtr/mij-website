@@ -11,14 +11,14 @@ export const bn = {
     recruit: 'চাকরি',
     contact: 'যোগাযোগ',
   },
-  
+
   // Language Switcher
   language: {
     english: 'English',
     japanese: '日本語',
     bengali: 'বাংলা',
   },
-  
+
   // Common
   common: {
     learnMore: 'আরও জানুন',
@@ -29,7 +29,7 @@ export const bn = {
     submit: 'জমা দিন',
     sending: 'পাঠানো হচ্ছে...',
   },
-  
+
   // Home Page
   home: {
     tagline: 'সীমানা পার করে, স্বপ্ন সংযুক্ত করে',
@@ -131,7 +131,7 @@ export const bn = {
       instagram: 'Instagram',
     },
   },
-  
+
   // About Page
   about: {
     badge: 'আমাদের সম্পর্কে',
@@ -205,7 +205,7 @@ export const bn = {
       description: 'চলুন একসাথে অসাধারণ কিছু তৈরি করি। অংশীদারিত্বের সুযোগ অন্বেষণ করতে আমাদের সাথে যোগাযোগ করুন।',
     },
   },
-  
+
   // Business Page
   business: {
     badge: 'আমাদের ব্যবসা',
@@ -308,13 +308,9 @@ export const bn = {
         },
       },
     },
-    cta: {
-      title: 'আপনার ব্যবসা বৃদ্ধি করতে',
-      highlight: 'প্রস্তুত?',
-      description: 'আসুন আলোচনা করি কিভাবে আমরা জাপান বা বাংলাদেশ বাজারে আপনার সাফল্যে সহায়তা করতে পারি।',
-    },
   },
-  
+
+
   // Services Page
   services: {
     badge: 'আমাদের সেবাসমূহ',
@@ -399,7 +395,7 @@ export const bn = {
       description: 'আপনার প্রয়োজনীয়তা নিয়ে আলোচনা করতে এবং আমরা কীভাবে আপনার লক্ষ্য অর্জনে সহায়তা করতে পারি তা আবিষ্কার করতে আজই আমাদের সাথে যোগাযোগ করুন।',
     },
   },
-  
+
   // Clients Page
   clients: {
     badge: 'আমাদের ক্লায়েন্ট',
@@ -456,7 +452,7 @@ export const bn = {
       description: 'আমাদের সাফল্যের গল্পের অংশ হয়ে উঠুন। আপনার ব্যবসায়িক লক্ষ্য অর্জনের জন্য একসাথে কাজ করা যাক।',
     },
   },
-  
+
   // Partners Page
   partners: {
     badge: 'আমাদের অংশীদার',
@@ -521,7 +517,7 @@ export const bn = {
       description: 'আসুন অংশীদারিত্বের সুযোগ অন্বেষণ করি এবং একসাথে বেড়ে উঠি। কথোপকথন শুরু করতে আমাদের সাথে যোগাযোগ করুন।',
     },
   },
-  
+
   // News Page
   news: {
     badge: 'সর্বশেষ খবর',
@@ -584,7 +580,7 @@ export const bn = {
     },
     readArticle: 'সম্পূর্ণ নিবন্ধ পড়ুন',
   },
-  
+
   // Recruit Page
   recruit: {
     badge: 'ক্যারিয়ার',
@@ -667,7 +663,7 @@ export const bn = {
     },
     apply: 'এখনই আবেদন করুন',
   },
-  
+
   // Contact Page
   contact: {
     badge: 'যোগাযোগ করুন',
@@ -738,7 +734,7 @@ export const bn = {
       },
     },
   },
-  
+
   // Search Page
   search: {
     badge: 'অনুসন্ধান',
@@ -772,7 +768,7 @@ export const bn = {
       about: 'MIJ সম্পর্কে',
     },
   },
-  
+
   // 404 Page
   notFound: {
     badge: '৪০৪ ত্রুটি',
@@ -801,7 +797,7 @@ export const bn = {
       },
     },
   },
-  
+
   // Footer
   footer: {
     tagline: 'সীমানা অতিক্রম করুন, স্বপ্ন সংযুক্ত করুন',

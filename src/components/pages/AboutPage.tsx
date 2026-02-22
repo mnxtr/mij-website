@@ -3,14 +3,33 @@ import { Badge } from '../ui/badge';
 import { motion } from 'motion/react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { Target, Users, Globe2, Heart, Award, TrendingUp } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getTranslation } from '../../translations';
+import TextReveal from '../animations/TextReveal';
+import Magnetic from '../animations/Magnetic';
+
+const FloatingShape = ({ className, delay = 0 }: { className?: string; delay?: number }) => (
+  <motion.div
+    animate={{
+      y: [0, -20, 0],
+      rotate: [0, 10, 0],
+      scale: [1, 1.05, 1],
+    }}
+    transition={{
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay,
+    }}
+    className={`absolute rounded-full mix-blend-multiply filter blur-2xl opacity-20 pointer-events-none ${className}`}
+  />
+);
 
 export default function AboutPage() {
   const { language } = useLanguage();
   const t = getTranslation(language);
-  
+
   const [touchedButton, setTouchedButton] = useState<string | null>(null);
   const [animatedImages, setAnimatedImages] = useState<{ [key: string]: boolean }>({});
   const [registeredImages, setRegisteredImages] = useState<string[]>([]);
@@ -36,15 +55,15 @@ export default function AboutPage() {
     if (registeredImages.length === 0) return;
 
     let currentIndex = 0;
-    
+
     const interval = setInterval(() => {
       const imageId = registeredImages[currentIndex];
-      
+
       // Turn current image to color and keep it
       if (!animatedImages[imageId]) {
         setAnimatedImages(prev => ({ ...prev, [imageId]: true }));
       }
-      
+
       // Move to next image
       currentIndex = (currentIndex + 1) % registeredImages.length;
     }, 600); // Stagger timing for wave effect
@@ -101,29 +120,44 @@ export default function AboutPage() {
   return (
     <div className="w-full bg-white">
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 bg-gray-50">
-        <div className="container mx-auto px-6 md:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="flex items-center justify-center gap-4 mb-8">
+      <section className="relative py-24 md:py-32 bg-white overflow-hidden">
+        {/* Floating background elements for premium feel */}
+        <FloatingShape className="w-96 h-96 bg-[#D4387F] -top-10 -left-10" />
+        <FloatingShape className="w-80 h-80 bg-blue-400 -bottom-20 right-20" delay={2} />
+        <FloatingShape className="w-64 h-64 bg-yellow-200 top-40 right-1/4" delay={4} />
+
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center justify-center gap-4 mb-8"
+            >
               <div className="w-12 h-0.5 bg-gray-900" />
-              <Badge variant="outline" className="border-gray-300 text-gray-700 text-xs tracking-wider uppercase">
+              <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5 px-4 py-1.5 text-xs tracking-wider uppercase rounded-full">
                 {t.about.badge}
               </Badge>
               <div className="w-12 h-0.5 bg-gray-900" />
-            </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-              {t.about.hero.title} <span className="text-[#D4387F]">{t.about.hero.highlight}</span>
-              <br />{t.about.hero.subtitle}
+            </motion.div>
+
+            <h1 className="text-6xl md:text-8xl font-black mb-8 leading-tight tracking-tighter text-gray-950">
+              <TextReveal text={t.about.hero.title} />
+              <div className="flex flex-wrap justify-center gap-x-4">
+                <TextReveal text={t.about.hero.highlight} className="text-[#D4387F]" delay={0.5} />
+                <TextReveal text={t.about.hero.subtitle} delay={0.8} />
+              </div>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto font-light"
+            >
               {t.about.hero.description}
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
         </div>
       </section>
 
@@ -137,25 +171,21 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Card 
-                className={`border-2 h-full transition-all group ${
-                  touchedCard === 'mission' ? 'border-[#D4387F] shadow-lg' : 'border-gray-200'
-                } hover:border-[#D4387F]`}
+              <Card
+                className={`border-2 h-full transition-all group ${touchedCard === 'mission' ? 'border-[#D4387F] shadow-lg' : 'border-gray-200'
+                  } hover:border-[#D4387F]`}
                 onTouchStart={() => setTouchedCard('mission')}
                 onTouchEnd={() => setTimeout(() => setTouchedCard(null), 300)}
                 style={{ WebkitTapHighlightColor: 'transparent' }}
               >
                 <CardContent className="p-10 space-y-6">
-                  <div className={`w-16 h-16 border-2 border-gray-900 rounded-xl flex items-center justify-center transition-all ${
-                    touchedCard === 'mission' ? 'bg-[#D4387F] border-[#D4387F]' : ''
-                  } group-hover:bg-[#D4387F] group-hover:border-[#D4387F]`}>
-                    <Target className={`w-8 h-8 transition-colors ${
-                      touchedCard === 'mission' ? 'text-white' : 'text-gray-900'
-                    } group-hover:text-white`} />
+                  <div className={`w-16 h-16 border-2 border-gray-900 rounded-xl flex items-center justify-center transition-all ${touchedCard === 'mission' ? 'bg-[#D4387F] border-[#D4387F]' : ''
+                    } group-hover:bg-[#D4387F] group-hover:border-[#D4387F]`}>
+                    <Target className={`w-8 h-8 transition-colors ${touchedCard === 'mission' ? 'text-white' : 'text-gray-900'
+                      } group-hover:text-white`} />
                   </div>
-                  <h2 className={`text-3xl font-bold transition-colors ${
-                    touchedCard === 'mission' ? 'text-[#D4387F]' : 'text-gray-900'
-                  } group-hover:text-[#D4387F]`}>{t.about.mission.badge}</h2>
+                  <h2 className={`text-3xl font-bold transition-colors ${touchedCard === 'mission' ? 'text-[#D4387F]' : 'text-gray-900'
+                    } group-hover:text-[#D4387F]`}>{t.about.mission.badge}</h2>
                   <p className="text-gray-600 leading-relaxed">
                     {t.about.mission.description}
                   </p>
@@ -172,25 +202,21 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Card 
-                className={`border-2 h-full transition-all group ${
-                  touchedCard === 'vision' ? 'border-[#D4387F] shadow-lg' : 'border-gray-200'
-                } hover:border-[#D4387F]`}
+              <Card
+                className={`border-2 h-full transition-all group ${touchedCard === 'vision' ? 'border-[#D4387F] shadow-lg' : 'border-gray-200'
+                  } hover:border-[#D4387F]`}
                 onTouchStart={() => setTouchedCard('vision')}
                 onTouchEnd={() => setTimeout(() => setTouchedCard(null), 300)}
                 style={{ WebkitTapHighlightColor: 'transparent' }}
               >
                 <CardContent className="p-10 space-y-6">
-                  <div className={`w-16 h-16 border-2 border-gray-900 rounded-xl flex items-center justify-center transition-all ${
-                    touchedCard === 'vision' ? 'bg-[#D4387F] border-[#D4387F]' : ''
-                  } group-hover:bg-[#D4387F] group-hover:border-[#D4387F]`}>
-                    <Globe2 className={`w-8 h-8 transition-colors ${
-                      touchedCard === 'vision' ? 'text-white' : 'text-gray-900'
-                    } group-hover:text-white`} />
+                  <div className={`w-16 h-16 border-2 border-gray-900 rounded-xl flex items-center justify-center transition-all ${touchedCard === 'vision' ? 'bg-[#D4387F] border-[#D4387F]' : ''
+                    } group-hover:bg-[#D4387F] group-hover:border-[#D4387F]`}>
+                    <Globe2 className={`w-8 h-8 transition-colors ${touchedCard === 'vision' ? 'text-white' : 'text-gray-900'
+                      } group-hover:text-white`} />
                   </div>
-                  <h2 className={`text-3xl font-bold transition-colors ${
-                    touchedCard === 'vision' ? 'text-[#D4387F]' : 'text-gray-900'
-                  } group-hover:text-[#D4387F]`}>{t.about.vision.title}</h2>
+                  <h2 className={`text-3xl font-bold transition-colors ${touchedCard === 'vision' ? 'text-[#D4387F]' : 'text-gray-900'
+                    } group-hover:text-[#D4387F]`}>{t.about.vision.title}</h2>
                   <p className="text-gray-600 leading-relaxed">
                     {t.about.vision.description}
                   </p>
@@ -298,38 +324,47 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              visible: { transition: { staggerChildren: 0.15 } },
+              hidden: {}
+            }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
+          >
             {values.map((value, index) => {
               const Icon = value.icon;
               const isTouched = touchedCard === `value-${index}`;
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  variants={{
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                    hidden: { opacity: 0, y: 30, scale: 0.9 }
+                  }}
+                  transition={{ duration: 0.5 }}
                   onTouchStart={() => setTouchedCard(`value-${index}`)}
                   onTouchEnd={() => setTimeout(() => setTouchedCard(null), 300)}
                   style={{ WebkitTapHighlightColor: 'transparent' }}
+                  className="h-full"
                 >
-                  <Card 
-                    className={`border-2 text-center h-full transition-all group cursor-pointer ${
-                      isTouched ? 'border-[#D4387F] shadow-lg' : 'border-gray-200'
-                    } hover:border-[#D4387F] hover:shadow-lg`}
+                  <Card
+                    className={`border-2 text-center h-full transition-all group cursor-pointer rounded-[32px] overflow-hidden ${isTouched ? 'border-[#D4387F] shadow-2xl' : 'border-gray-100 bg-gray-50/50'
+                      } hover:border-[#D4387F] hover:shadow-2xl hover:bg-white`}
                   >
-                    <CardContent className="p-8 space-y-4">
-                      <div className={`w-16 h-16 border-2 rounded-xl flex items-center justify-center mx-auto transition-all ${
-                        isTouched ? 'bg-[#D4387F] border-[#D4387F]' : 'border-gray-900'
-                      } group-hover:bg-[#D4387F] group-hover:border-[#D4387F]`}>
-                        <Icon className={`w-8 h-8 transition-colors ${
-                          isTouched ? 'text-white' : 'text-gray-900'
-                        } group-hover:text-white`} />
-                      </div>
-                      <h3 className={`text-xl font-bold transition-colors ${
-                        isTouched ? 'text-[#D4387F]' : 'text-gray-900'
-                      } group-hover:text-[#D4387F]`}>{value.title}</h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">
+                    <CardContent className="p-10 space-y-6">
+                      <Magnetic>
+                        <div className={`w-20 h-20 border-2 rounded-2xl flex items-center justify-center mx-auto transition-all duration-500 ${isTouched ? 'bg-[#D4387F] border-[#D4387F] scale-110 rotate-6' : 'border-gray-900 bg-white shadow-sm'
+                          } group-hover:bg-[#D4387F] group-hover:border-[#D4387F] group-hover:scale-110 group-hover:rotate-6`}>
+                          <Icon className={`w-10 h-10 transition-colors duration-500 ${isTouched ? 'text-white' : 'text-gray-900'
+                            } group-hover:text-white`} />
+                        </div>
+                      </Magnetic>
+                      <h3 className={`text-2xl font-black transition-colors ${isTouched ? 'text-[#D4387F]' : 'text-gray-900'
+                        } group-hover:text-[#D4387F]`}>{value.title}</h3>
+                      <p className="text-base text-gray-500 leading-relaxed font-light">
                         {value.description}
                       </p>
                     </CardContent>
@@ -337,7 +372,7 @@ export default function AboutPage() {
                 </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -397,20 +432,18 @@ export default function AboutPage() {
                 onViewportEnter={() => registerImage(`leader-${index}`)}
                 onViewportLeave={() => unregisterImage(`leader-${index}`)}
               >
-                <Card 
-                  className={`border-2 overflow-hidden transition-all group ${
-                    touchedButton === `leader-${index}` ? 'border-[#D4387F] shadow-lg' : 'border-gray-200'
-                  } hover:border-[#D4387F] hover:shadow-lg`}
+                <Card
+                  className={`border-2 overflow-hidden transition-all group ${touchedButton === `leader-${index}` ? 'border-[#D4387F] shadow-lg' : 'border-gray-200'
+                    } hover:border-[#D4387F] hover:shadow-lg`}
                 >
-                  <div 
+                  <div
                     className="relative h-56 bg-gradient-to-br from-[#D4387F]/10 to-[#D4387F]/20 overflow-hidden"
                   >
                     <ImageWithFallback
                       src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NjM0MDc5ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
                       alt={leader.name}
-                      className={`w-full h-full object-cover transition-all duration-500 ${
-                        animatedImages[`leader-${index}`] ? 'grayscale-0' : 'grayscale'
-                      } group-hover:grayscale-0`}
+                      className={`w-full h-full object-cover transition-all duration-500 ${animatedImages[`leader-${index}`] ? 'grayscale-0' : 'grayscale'
+                        } group-hover:grayscale-0`}
                       onTouchStart={() => setTouchedButton(`leader-${index}`)}
                       onTouchEnd={() => setTimeout(() => setTouchedButton(null), 500)}
                       style={{ WebkitTapHighlightColor: 'transparent' }}

@@ -2,44 +2,44 @@ export const en = {
   // Navigation
   nav: {
     home: 'Home',
-    about: 'About',
-    business: 'Business',
-    news: 'News',
-    services: 'Services',
-    clients: 'Clients',
-    partners: 'Partners',
-    recruit: 'Recruit',
-    contact: 'Contact',
+    about: 'Corporate Profile',
+    business: 'Strategic Divisions',
+    news: 'Insights & Updates',
+    services: 'Professional Services',
+    clients: 'Client Portfolio',
+    partners: 'Strategic Alliances',
+    recruit: 'Career Opportunities',
+    contact: 'Inquiry & Support',
   },
-  
+
   // Language Switcher
   language: {
     english: 'English',
     japanese: '日本語',
     bengali: 'বাংলা',
   },
-  
+
   // Common
   common: {
-    learnMore: 'Learn More',
-    readMore: 'Read More',
-    contactUs: 'Contact Us',
-    getStarted: 'Get Started',
-    viewAll: 'View All',
+    learnMore: 'Discover More',
+    readMore: 'Continue Reading',
+    contactUs: 'General Inquiries',
+    getStarted: 'Initiate Consultation',
+    viewAll: 'View Collective',
     submit: 'Submit',
     sending: 'Sending...',
   },
-  
+
   // Home Page
   home: {
     hero: {
-      tagline1: 'Cross',
-      tagline2: 'Border,',
-      tagline3: 'Connect',
-      tagline4: 'Dreams',
-      description: 'Bridging Japan and Bangladesh through innovative business solutions, connecting markets and creating opportunities across borders.',
-      exploreServices: 'Explore Services',
-      getInTouch: 'Get in Touch',
+      tagline1: 'Strategic',
+      tagline2: 'Bilateral',
+      tagline3: 'Economic',
+      tagline4: 'Synergy',
+      description: 'Facilitating high-impact enterprise integration and sustainable cross-border development between the distinguished markets of Japan and Bangladesh.',
+      exploreServices: 'Strategic Solutions',
+      getInTouch: 'Initiate Inquiries',
     },
     stats: {
       experience: 'Years of Experience',
@@ -48,10 +48,10 @@ export const en = {
       countries: 'Countries Connected',
     },
     business: {
-      badge: 'Our Services',
-      title: 'What We Do',
-      description: 'Four pillars of excellence connecting Japan and Bangladesh through innovative solutions',
-      viewAllServices: 'View All Services',
+      badge: 'Core Competencies',
+      title: 'Our Strategic Domains',
+      description: 'Four fundamental pillars of excellence dedicated to enhancing bilateral trade and industrial growth between Japan and Bangladesh.',
+      viewAllServices: 'View Comprehensive Portfolio',
       mijProducts: {
         title: 'MIJ Products',
         description: 'Premium Japanese products distribution connecting authentic brands with global markets.',
@@ -143,7 +143,7 @@ export const en = {
       },
     },
   },
-  
+
   // About Page
   about: {
     badge: 'About Us',
@@ -241,7 +241,7 @@ export const en = {
       },
     },
   },
-  
+
   // Business Page
   business: {
     badge: 'Our Business',
@@ -344,13 +344,8 @@ export const en = {
         },
       },
     },
-    cta: {
-      title: 'Ready to Grow Your',
-      highlight: 'Business?',
-      description: 'Let\'s discuss how we can help you succeed in Japan or Bangladesh markets.',
-    },
   },
-  
+
   // Services Page
   services: {
     badge: 'Our Services',
@@ -435,7 +430,7 @@ export const en = {
       description: 'Contact us today to discuss your requirements and discover how we can help you achieve your goals.',
     },
   },
-  
+
   // Clients Page
   clients: {
     badge: 'Our Clients',
@@ -492,7 +487,7 @@ export const en = {
       description: 'Become part of our success story. Let\'s work together to achieve your business goals.',
     },
   },
-  
+
   // Partners Page
   partners: {
     badge: 'Our Partners',
@@ -557,7 +552,7 @@ export const en = {
       description: 'Let\'s explore partnership opportunities and grow together. Contact us to start the conversation.',
     },
   },
-  
+
   // News Page
   news: {
     badge: 'Latest News',
@@ -620,7 +615,7 @@ export const en = {
     },
     readArticle: 'Read Full Article',
   },
-  
+
   // Recruit Page
   recruit: {
     badge: 'Careers',
@@ -703,7 +698,7 @@ export const en = {
     },
     apply: 'Apply Now',
   },
-  
+
   // Contact Page
   contact: {
     badge: 'Contact Us',
@@ -769,7 +764,7 @@ export const en = {
       },
     },
   },
-  
+
   // Search Page
   search: {
     badge: 'Search',
@@ -803,7 +798,7 @@ export const en = {
       about: 'About MIJ',
     },
   },
-  
+
   // 404 Page
   notFound: {
     badge: '404 Error',
@@ -832,7 +827,7 @@ export const en = {
       },
     },
   },
-  
+
   // Footer
   footer: {
     tagline: 'Cross Border, Connect Dreams',

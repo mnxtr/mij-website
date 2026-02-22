@@ -11,14 +11,14 @@ export const ja = {
     recruit: '採用情報',
     contact: 'お問い合わせ',
   },
-  
+
   // Language Switcher
   language: {
     english: 'English',
     japanese: '日本語',
     bengali: 'বাংলা',
   },
-  
+
   // Common
   common: {
     learnMore: '詳しく見る',
@@ -29,7 +29,7 @@ export const ja = {
     submit: '送信',
     sending: '送信中...',
   },
-  
+
   // Home Page
   home: {
     hero: {
@@ -143,7 +143,7 @@ export const ja = {
       },
     },
   },
-  
+
   // About Page
   about: {
     badge: '会社概要',
@@ -241,7 +241,7 @@ export const ja = {
       },
     },
   },
-  
+
   // Business Page
   business: {
     badge: '私たちのビジネス',
@@ -344,13 +344,9 @@ export const ja = {
         },
       },
     },
-    cta: {
-      title: 'ビジネスを成長させる',
-      highlight: '準備はできましたか？',
-      description: '日本またはバングラデシュ市場での成功をどのようにサポートできるか話し合いましょう。',
-    },
   },
-  
+
+
   // Services Page
   services: {
     badge: '私たちのサービス',
@@ -435,7 +431,7 @@ export const ja = {
       description: 'お客様の要件について話し合い、どのように目標達成をサポートできるかを発見するために、今日お問い合わせください。',
     },
   },
-  
+
   // Clients Page
   clients: {
     badge: '私たちのクライアント',
@@ -492,7 +488,7 @@ export const ja = {
       description: '私たちの成功トーリーの一部になりましょう。一緒にあなたのビジネス目標を達成しましょう。',
     },
   },
-  
+
   // Partners Page
   partners: {
     badge: '私たちのパートナー',
@@ -557,7 +553,7 @@ export const ja = {
       description: 'パートナーシップの機会を探り、一緒に成長しましょう。会話を始めるために、お問い合わせください。',
     },
   },
-  
+
   // News Page
   news: {
     badge: '最新ニュース',
@@ -620,7 +616,7 @@ export const ja = {
     },
     readArticle: '記事全文を読む',
   },
-  
+
   // Recruit Page
   recruit: {
     badge: '採用情報',
@@ -703,7 +699,7 @@ export const ja = {
     },
     apply: '今すぐ応募',
   },
-  
+
   // Contact Page
   contact: {
     badge: 'お問い合わせ',
@@ -769,7 +765,7 @@ export const ja = {
       },
     },
   },
-  
+
   // Search Page
   search: {
     badge: '検索',
@@ -803,7 +799,7 @@ export const ja = {
       about: 'MIJについて',
     },
   },
-  
+
   // 404 Page
   notFound: {
     badge: '404エラー',
@@ -832,7 +828,7 @@ export const ja = {
       },
     },
   },
-  
+
   // Footer
   footer: {
     tagline: '国境を越えて、夢をつなぐ',
