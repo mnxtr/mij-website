@@ -57,7 +57,7 @@ export default function AboutPage() {
     let currentIndex = 0;
     const interval = setInterval(() => {
       const imageId = registeredImages[currentIndex];
-      if (!animatedImages[imageId]) {
+      if (imageId && !animatedImages[imageId]) {
         setAnimatedImages(prev => ({ ...prev, [imageId]: true }));
       }
       currentIndex = (currentIndex + 1) % registeredImages.length;
